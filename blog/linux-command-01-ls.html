@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,终端,命令," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ls命令是linux下最常用的命令之一，ls跟dos下的dir命令是一样的都是用来列出目录下的文件，下面我们就来一起看看ls的用法 英文全名:List即列表的意思，当我们学习某种东西的时候要做到知其所以然，当你知道了这个东西大概是个什么了以后你的思维就会联想到很多的东西学习的就会很快。">
+<meta name="keywords" content="linux,终端,命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令(01)：ls">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-01-ls.html">
+<meta property="og:site_name" content="Maxlau">
+<meta property="og:description" content="ls命令是linux下最常用的命令之一，ls跟dos下的dir命令是一样的都是用来列出目录下的文件，下面我们就来一起看看ls的用法 英文全名:List即列表的意思，当我们学习某种东西的时候要做到知其所以然，当你知道了这个东西大概是个什么了以后你的思维就会联想到很多的东西学习的就会很快。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-08T13:52:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令(01)：ls">
+<meta name="twitter:description" content="ls命令是linux下最常用的命令之一，ls跟dos下的dir命令是一样的都是用来列出目录下的文件，下面我们就来一起看看ls的用法 英文全名:List即列表的意思，当我们学习某种东西的时候要做到知其所以然，当你知道了这个东西大概是个什么了以后你的思维就会联想到很多的东西学习的就会很快。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-01-ls.html"/>
+
+
+
+
+
+  <title>每天一个linux命令(01)：ls | Maxlau</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Maxlau</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-01-ls.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maxlau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxlau">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(01)：ls</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T09:39:53+08:00">
+                2018-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ls命令是linux下最常用的命令之一，ls跟dos下的dir命令是一样的都是用来列出目录下的文件，下面我们就来一起看看ls的用法</p>
+<p>英文全名:List即列表的意思，当我们学习某种东西的时候要做到知其所以然，当你知道了这个东西大概是个什么了以后你的思维就会联想到很多的东西学习的就会很快。<a id="more"></a></p>
+<h1 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td style="text-align:left">–-all 列出目录下的所有文件，包括以 . 开头的隐含文件</td>
+</tr>
+<tr>
+<td>-l</td>
+<td style="text-align:left">除了文件名之外，还将文件的权限、链接数、所有者、文件大小等信息详细列出来</td>
+</tr>
+<tr>
+<td>-d</td>
+<td style="text-align:left">–directory 将目录以文件方式显示，而不是显示其下的文件</td>
+</tr>
+<tr>
+<td>-h</td>
+<td style="text-align:left">–human-readable 以容易理解的格式列出文件大小 (例如 1K 234M 2G)</td>
+</tr>
+<tr>
+<td>-t</td>
+<td style="text-align:left">以文件修改时间排序</td>
+</tr>
+<tr>
+<td>-S</td>
+<td style="text-align:left">排序文件大小</td>
+</tr>
+<tr>
+<td>-r</td>
+<td style="text-align:left">排序时反转顺序</td>
+</tr>
+<tr>
+<td>-R</td>
+<td style="text-align:left">recursive 递归列出子目录</td>
+</tr>
+<tr>
+<td>-X</td>
+<td style="text-align:left">或–sort=extension， 扩展名排序</td>
+</tr>
+<tr>
+<td>-p</td>
+<td style="text-align:left">增加 / (斜线) 标记目录</td>
+</tr>
+<tr>
+<td>-F</td>
+<td style="text-align:left">添加后缀标记 (如*/=&gt;@ \ …)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="ls-la"><a href="#ls-la" class="headerlink" title="ls -la"></a>ls -la</h3><p>–-all 列出目录下的所有文件，包括以 . 开头的隐含文件</p>
+<p>–-l 除了文件名之外，还将文件的权限、链接数、所有者、文件大小等信息详细列出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls -la</span><br><span class="line">total 56</span><br><span class="line">drwxr-xr-x   13 liujieping  staff   442  5 13  2017 .</span><br><span class="line">drwxr-xr-x+  69 liujieping  staff  2346  4  5 22:12 ..</span><br><span class="line">-rw-r--r--@   1 liujieping  staff  8196  4  7 09:44 .DS_Store</span><br><span class="line">drwxr-xr-x   10 liujieping  staff   340  5  6  2017 .deploy_git</span><br><span class="line">-rw-r--r--    1 liujieping  staff    65  4 21  2017 .gitignore</span><br><span class="line">-rw-r--r--    1 liujieping  staff  1640  4 22  2017 _config.yml</span><br><span class="line">-rw-r--r--    1 liujieping  staff   174  4  7 09:39 db.json</span><br><span class="line">drwxr-xr-x  289 liujieping  staff  9826  4 22  2017 node_modules</span><br><span class="line">-rw-r--r--    1 liujieping  staff   484  4 22  2017 package.json</span><br><span class="line">drwxr-xr-x   10 liujieping  staff   340  4 22  2017 public</span><br><span class="line">drwxr-xr-x    5 liujieping  staff   170  4 21  2017 scaffolds</span><br><span class="line">drwxr-xr-x    6 liujieping  staff   204  4  4 11:59 source</span><br><span class="line">drwxr-xr-x    5 liujieping  staff   170  4 22  2017 themes</span><br></pre></td></tr></table></figure>
+<p>如果我们希望只列出目录:</p>
+<h3 id="ls-d"><a href="#ls-d" class="headerlink" title="ls -d"></a>ls -d</h3><p>–-directory 将目录以文件方式显示，而不是显示其下的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls -d source</span><br><span class="line">source</span><br><span class="line"></span><br><span class="line">Leo$ ls -d */</span><br><span class="line">node_modules/	public/		scaffolds/	source/		themes/</span><br><span class="line"></span><br><span class="line">Leo$ ls -d *</span><br><span class="line">_config.yml	node_modules	public		source</span><br><span class="line">db.json		package.json	scaffolds	themes</span><br></pre></td></tr></table></figure>
+<h2 id="详细"><a href="#详细" class="headerlink" title="详细"></a>详细</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">Usage: ls [OPTION]... [FILE]...</span><br><span class="line">List information about the FILEs (the current directory by default).</span><br><span class="line">Sort entries alphabetically if none of -cftuvSUX nor --sort.</span><br><span class="line"></span><br><span class="line">Mandatory arguments to long options are mandatory for short options too.</span><br><span class="line">  -a, --all                  do not ignore entries starting with .</span><br><span class="line">  -A, --almost-all           do not list implied . and ..</span><br><span class="line">      --author               with -l, print the author of each file</span><br><span class="line">  -b, --escape               print octal escapes for nongraphic characters</span><br><span class="line">      --block-size=SIZE      use SIZE-byte blocks.  See SIZE format below</span><br><span class="line">  -B, --ignore-backups       do not list implied entries ending with ~</span><br><span class="line">  -c                         with -lt: sort by, and show, ctime (time of last</span><br><span class="line">                               modification of file status information)</span><br><span class="line">                               with -l: show ctime and sort by name</span><br><span class="line">                               otherwise: sort by ctime</span><br><span class="line">  -C                         list entries by columns</span><br><span class="line">      --color[=WHEN]         colorize the output.  WHEN defaults to `always&apos;</span><br><span class="line">                               or can be `never&apos; or `auto&apos;.  More info below</span><br><span class="line">  -d, --directory            list directory entries instead of contents,</span><br><span class="line">                               and do not dereference symbolic links</span><br><span class="line">  -D, --dired                generate output designed for Emacs&apos; dired mode</span><br><span class="line">  -f                         do not sort, enable -aU, disable -ls --color</span><br><span class="line">  -F, --classify             append indicator (one of */=&gt;@|) to entries</span><br><span class="line">      --file-type            likewise, except do not append `*&apos;</span><br><span class="line">      --format=WORD          across -x, commas -m, horizontal -x, long -l,</span><br><span class="line">                               single-column -1, verbose -l, vertical -C</span><br><span class="line">      --full-time            like -l --time-style=full-iso</span><br><span class="line">  -g                         like -l, but do not list owner</span><br><span class="line">      --group-directories-first</span><br><span class="line">                             group directories before files.</span><br><span class="line">                               augment with a --sort option, but any</span><br><span class="line">                               use of --sort=none (-U) disables grouping</span><br><span class="line">  -G, --no-group             in a long listing, don&apos;t print group names</span><br><span class="line">  -h, --human-readable       with -l, print sizes in human readable format</span><br><span class="line">                               (e.g., 1K 234M 2G)</span><br><span class="line">      --si                   likewise, but use powers of 1000 not 1024</span><br><span class="line">  -H, --dereference-command-line</span><br><span class="line">                             follow symbolic links listed on the command line</span><br><span class="line">      --dereference-command-line-symlink-to-dir</span><br><span class="line">                             follow each command line symbolic link</span><br><span class="line">                             that points to a directory</span><br><span class="line">      --hide=PATTERN         do not list implied entries matching shell PATTERN</span><br><span class="line">                               (overridden by -a or -A)</span><br><span class="line">      --indicator-style=WORD  append indicator with style WORD to entry names:</span><br><span class="line">                               none (default), slash (-p),</span><br><span class="line">                               file-type (--file-type), classify (-F)</span><br><span class="line">  -i, --inode                print the index number of each file</span><br><span class="line">  -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN</span><br><span class="line">  -k                         like --block-size=1K</span><br><span class="line">  -l                         use a long listing format</span><br><span class="line">  -L, --dereference          when showing file information for a symbolic</span><br><span class="line">                               link, show information for the file the link</span><br><span class="line">                               references rather than for the link itself</span><br><span class="line">  -m                         fill width with a comma separated list of entries</span><br><span class="line">  -n, --numeric-uid-gid      like -l, but list numeric user and group IDs</span><br><span class="line">  -N, --literal              print raw entry names (don&apos;t treat e.g. control</span><br><span class="line">                               characters specially)</span><br><span class="line">  -o                         like -l, but do not list group information</span><br><span class="line">  -p, --indicator-style=slash</span><br><span class="line">                             append / indicator to directories</span><br><span class="line">  -q, --hide-control-chars   print ? instead of non graphic characters</span><br><span class="line">      --show-control-chars   show non graphic characters as-is (default</span><br><span class="line">                             unless program is `ls&apos; and output is a terminal)</span><br><span class="line">  -Q, --quote-name           enclose entry names in double quotes</span><br><span class="line">      --quoting-style=WORD   use quoting style WORD for entry names:</span><br><span class="line">                               literal, locale, shell, shell-always, c, escape</span><br><span class="line">  -r, --reverse              reverse order while sorting</span><br><span class="line">  -R, --recursive            list subdirectories recursively</span><br><span class="line">  -s, --size                 print the allocated size of each file, in blocks</span><br><span class="line">  -S                         sort by file size</span><br><span class="line">      --sort=WORD            sort by WORD instead of name: none -U,</span><br><span class="line">                             extension -X, size -S, time -t, version -v</span><br><span class="line">      --time=WORD            with -l, show time as WORD instead of modification</span><br><span class="line">                             time: atime -u, access -u, use -u, ctime -c,</span><br><span class="line">                             or status -c; use specified time as sort key</span><br><span class="line">                             if --sort=time</span><br><span class="line">      --time-style=STYLE     with -l, show times using style STYLE:</span><br><span class="line">                             full-iso, long-iso, iso, locale, +FORMAT.</span><br><span class="line">                             FORMAT is interpreted like `date&apos;; if FORMAT is</span><br><span class="line">                             FORMAT1&lt;newline&gt;FORMAT2, FORMAT1 applies to</span><br><span class="line">                             non-recent files and FORMAT2 to recent files;</span><br><span class="line">                             if STYLE is prefixed with `posix-&apos;, STYLE</span><br><span class="line">                             takes effect only outside the POSIX locale</span><br><span class="line">  -t                         sort by modification time</span><br><span class="line">  -T, --tabsize=COLS         assume tab stops at each COLS instead of 8</span><br><span class="line">  -u                         with -lt: sort by, and show, access time</span><br><span class="line">                               with -l: show access time and sort by name</span><br><span class="line">                               otherwise: sort by access time</span><br><span class="line">  -U                         do not sort; list entries in directory order</span><br><span class="line">  -v                         natural sort of (version) numbers within text</span><br><span class="line">  -w, --width=COLS           assume screen width instead of current value</span><br><span class="line">  -x                         list entries by lines instead of by columns</span><br><span class="line">  -X                         sort alphabetically by entry extension</span><br><span class="line">  -1                         list one file per line</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/终端/" rel="tag"># 终端</a>
+          
+            <a href="/tags/命令/" rel="tag"># 命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/markdown-syntex.html" rel="next" title="markdown-syntex">
+                <i class="fa fa-chevron-left"></i> markdown-syntex
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Maxlau</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ls"><span class="nav-number">1.</span> <span class="nav-text">ls</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-la"><span class="nav-number">1.2.1.</span> <span class="nav-text">ls -la</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-d"><span class="nav-number">1.2.2.</span> <span class="nav-text">ls -d</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细"><span class="nav-number">1.3.</span> <span class="nav-text">详细</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maxlau</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
