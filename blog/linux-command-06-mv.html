@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="代理,http,github," />
+  <meta name="keywords" content="linux,终端,命令," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Github是一个非常好用的云端代码托管服务，但由于各种原因经常会出现同步速度缓慢甚至阻断的问题，为了保证在使用Github时的快速和稳定，找一个可靠的代理方法是很有必要的。">
-<meta name="keywords" content="代理,http,github">
+<meta name="description" content="mv命令是move的缩写，可以用来移动文件或者将文件改名，也经常用来备份文件和目录，是比较常用的命令之一。 当第二个参数类型是文件时，主要是完成文件或目录的重命名任务。 当第二个参数类型是目录时，主要是完成文件或目录的移动任务。">
+<meta name="keywords" content="linux,终端,命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac上使用polipo代理http连接github">
-<meta property="og:url" content="http://maxlauhi.github.io/blog/Connect github with ssh and http on a Mac via.html">
+<meta property="og:title" content="每天一个linux命令(06)：mv">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-06-mv.html">
 <meta property="og:site_name" content="Maxlau">
-<meta property="og:description" content="Github是一个非常好用的云端代码托管服务，但由于各种原因经常会出现同步速度缓慢甚至阻断的问题，为了保证在使用Github时的快速和稳定，找一个可靠的代理方法是很有必要的。">
+<meta property="og:description" content="mv命令是move的缩写，可以用来移动文件或者将文件改名，也经常用来备份文件和目录，是比较常用的命令之一。 当第二个参数类型是文件时，主要是完成文件或目录的重命名任务。 当第二个参数类型是目录时，主要是完成文件或目录的移动任务。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T15:51:29.000Z">
+<meta property="og:updated_time" content="2018-04-15T14:08:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac上使用polipo代理http连接github">
-<meta name="twitter:description" content="Github是一个非常好用的云端代码托管服务，但由于各种原因经常会出现同步速度缓慢甚至阻断的问题，为了保证在使用Github时的快速和稳定，找一个可靠的代理方法是很有必要的。">
+<meta name="twitter:title" content="每天一个linux命令(06)：mv">
+<meta name="twitter:description" content="mv命令是move的缩写，可以用来移动文件或者将文件改名，也经常用来备份文件和目录，是比较常用的命令之一。 当第二个参数类型是文件时，主要是完成文件或目录的重命名任务。 当第二个参数类型是目录时，主要是完成文件或目录的移动任务。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://maxlauhi.github.io/blog/Connect github with ssh and http on a Mac via.html"/>
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-06-mv.html"/>
 
 
 
 
 
-  <title>Mac上使用polipo代理http连接github | Maxlau</title>
+  <title>每天一个linux命令(06)：mv | Maxlau</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/Connect github with ssh and http on a Mac via.html">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-06-mv.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maxlau">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mac上使用polipo代理http连接github</h1>
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(06)：mv</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T11:39:53+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T21:33:23+08:00">
+                2018-04-15
               </time>
             
 
@@ -295,8 +295,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/办法总比问题多/" itemprop="url" rel="index">
-                    <span itemprop="name">办法总比问题多</span>
+                  <a href="/categories/linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">linux系统</span>
                   </a>
                 </span>
 
@@ -332,25 +332,43 @@
       
 
       
-        <p>Github是一个非常好用的云端代码托管服务，但由于各种原因经常会出现同步速度缓慢甚至阻断的问题，为了保证在使用Github时的快速和稳定，找一个可靠的代理方法是很有必要的。<a id="more"></a></p>
-<p>###git以http和ssh连接的区别</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># http方式连接</span><br><span class="line">Leo$ git clone https://github.com/maxlauhi/cspy3.git</span><br><span class="line"></span><br><span class="line"># ssh方式连接</span><br><span class="line">git clone git@github.com:maxlauhi/cspy3.git</span><br></pre></td></tr></table></figure>
-<p>###涉及到的软件工具：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、shadowsocks </span><br><span class="line">2、polipo</span><br></pre></td></tr></table></figure>
-<p>假定已安装ss并实现科学上网</p>
-<p>由于Shadowsocks使用socks5协议，而很多软件工具只支持http和https等协议。整体思路是利用polipo在Shadowsocks上做个socks5到http的转换代理，如有其他更好的方法请告知一下</p>
-<p>###http:</p>
-<p>1、首先安装 polipo, 设置polipo parent proxy为ss代理:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install polipo</span><br><span class="line">polipo socksParentProxy=localhost:1080 &amp;  # ss默认的代理端口一般为1080</span><br></pre></td></tr></table></figure>
-<p>2、设置全局http proxy，polipo的代理端口默认是8123</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Leo$ git config --global http.proxy 127.0.0.1:8123</span><br></pre></td></tr></table></figure>
-<p>​       或通过直接修改代理配置文件参数设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Leo$ vim ~/.gitconfig</span><br><span class="line"></span><br><span class="line">  1 [user]</span><br><span class="line">  2         name = maxlauhi</span><br><span class="line">  3         email = maxlauhi@gmail.com</span><br><span class="line">  4 [push]</span><br><span class="line">  5         default = matching</span><br><span class="line">  6 [http]</span><br><span class="line">  7         proxy = 127.0.0.1:8123</span><br></pre></td></tr></table></figure>
-<p>3、为了不用每次都要通过<code>service polipo start</code> 启动polipo，需要把它添加到开机启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 链接launchctl脚本</span><br><span class="line">ln -sfv /usr/local/opt/polipo/*.plist ~/Library/LaunchAgents/</span><br><span class="line"></span><br><span class="line"># 加载:</span><br><span class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.polipo.plist</span><br></pre></td></tr></table></figure>
-<p>###ssh:</p>
-<p>主要是通过设置ssh的代理配置文件(~/.ssh/config)实现，如无自行创建</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Leo$ vim ~/.ssh/config</span><br><span class="line"></span><br><span class="line">  1 Host github.com</span><br><span class="line">  2   User maxlauhi@gmai.com</span><br><span class="line">  3   Port 443</span><br><span class="line">  4   Hostname ssh.github.com</span><br></pre></td></tr></table></figure>
+        <p>mv命令是move的缩写，可以用来移动文件或者将文件改名，也经常用来备份文件和目录，是比较常用的命令之一。</p>
+<p>当第二个参数类型是文件时，主要是完成文件或目录的重命名任务。</p>
+<p>当第二个参数类型是目录时，主要是完成文件或目录的移动任务。<a id="more"></a></p>
+<h1 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b</td>
+<td style="text-align:left">若需覆盖文件，则覆盖前先行备份。</td>
+</tr>
+<tr>
+<td>-f</td>
+<td style="text-align:left">–force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖</td>
+</tr>
+<tr>
+<td>-i</td>
+<td style="text-align:left">若目标文件 (destination) 已经存在时，就会询问是否覆盖?</td>
+</tr>
+<tr>
+<td>-u</td>
+<td style="text-align:left">若目标文件已经存在，且 source 比较新，才会更新(update)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="mv-1"><a href="#mv-1" class="headerlink" title="mv"></a>mv</h3><p>不带命令参数一般会有提示 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls</span><br><span class="line">test.py</span><br><span class="line">Leo$ mv test.py test1.txt</span><br><span class="line">Leo$ ls</span><br><span class="line">test1.txt</span><br></pre></td></tr></table></figure>
+<p>-i 如果目标文件已经存在，则询问是否覆盖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls</span><br><span class="line">test1.txt	test2.txt</span><br><span class="line">Leo$ ls ../test2</span><br><span class="line">test1.txt</span><br><span class="line">Leo$ mv -i test1.txt ../test2</span><br><span class="line">overwrite ../test2/test1.txt? (y/n [n]) y</span><br><span class="line">Leo$ ls</span><br><span class="line">test2.txt</span><br><span class="line">Leo$ ls ../test2</span><br><span class="line">test1.txt</span><br></pre></td></tr></table></figure>
+<p>-f 即使目标文件已经存在，也会直接覆盖掉，并不提示！ </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls</span><br><span class="line">test2.txt</span><br><span class="line">Leo$ ls ../test2</span><br><span class="line">test1.txt test2.txt</span><br><span class="line">Leo$ mv -f test2.txt ../test2</span><br><span class="line">Leo$ ls</span><br><span class="line">Leo$</span><br></pre></td></tr></table></figure>
+<p>移动当前文件夹下的所有文件到上一级目录 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls</span><br><span class="line">test1.txt	test2.txt</span><br><span class="line">Leo$ mv * ../</span><br><span class="line">Leo$ ls ..</span><br><span class="line">test1.txt	test2.txt</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -368,11 +386,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/代理/" rel="tag"># 代理</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/http/" rel="tag"># http</a>
+            <a href="/tags/终端/" rel="tag"># 终端</a>
           
-            <a href="/tags/github/" rel="tag"># github</a>
+            <a href="/tags/命令/" rel="tag"># 命令</a>
           
         </div>
       
@@ -385,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/linux-command-03-pwd.html" rel="next" title="每天一个linux命令(03)：pwd">
-                <i class="fa fa-chevron-left"></i> 每天一个linux命令(03)：pwd
+              <a href="/blog/linux-command-05-rm.html" rel="next" title="每天一个linux命令(05)：rm">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(05)：rm
               </a>
             
           </div>
@@ -394,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/linux-command-04-mkdir.html" rel="prev" title="每天一个linux命令(04)：mkdir">
-                每天一个linux命令(04)：mkdir <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,8 +463,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -510,6 +533,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mv"><span class="nav-number">1.</span> <span class="nav-text">mv</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mv-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">mv</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
