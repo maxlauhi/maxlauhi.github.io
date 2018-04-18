@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="markdown,语法," />
+  <meta name="keywords" content="linux,终端,命令," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="markdown是一种轻量级标记语言。具有很强的可读性，书写也很简单，很适合写作和作笔记记录。这篇文章只是一个简单的语法操作指南，需要了解详细的语法可以参考Markdown发布格式的发明者JOHN GRUBER的官方网站，或者查看这份派生的简体中文版。">
-<meta name="keywords" content="markdown,语法">
+<meta name="description" content="一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件。">
+<meta name="keywords" content="linux,终端,命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="markdown-syntex">
-<meta property="og:url" content="http://maxlauhi.github.io/blog/markdown-syntex.html">
+<meta property="og:title" content="每天一个linux命令(08)：touch">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-08-touch.html">
 <meta property="og:site_name" content="Maxlau">
-<meta property="og:description" content="markdown是一种轻量级标记语言。具有很强的可读性，书写也很简单，很适合写作和作笔记记录。这篇文章只是一个简单的语法操作指南，需要了解详细的语法可以参考Markdown发布格式的发明者JOHN GRUBER的官方网站，或者查看这份派生的简体中文版。">
+<meta property="og:description" content="一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.taopic.com/uploads/allimg/140330/235060-1403300Q6268.jpg">
-<meta property="og:updated_time" content="2018-04-08T13:48:55.000Z">
+<meta property="og:updated_time" content="2018-04-18T23:34:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="markdown-syntex">
-<meta name="twitter:description" content="markdown是一种轻量级标记语言。具有很强的可读性，书写也很简单，很适合写作和作笔记记录。这篇文章只是一个简单的语法操作指南，需要了解详细的语法可以参考Markdown发布格式的发明者JOHN GRUBER的官方网站，或者查看这份派生的简体中文版。">
-<meta name="twitter:image" content="http://img.taopic.com/uploads/allimg/140330/235060-1403300Q6268.jpg">
+<meta name="twitter:title" content="每天一个linux命令(08)：touch">
+<meta name="twitter:description" content="一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件。">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://maxlauhi.github.io/blog/markdown-syntex.html"/>
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-08-touch.html"/>
 
 
 
 
 
-  <title>markdown-syntex | Maxlau</title>
+  <title>每天一个linux命令(08)：touch | Maxlau</title>
   
 
 
@@ -245,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/markdown-syntex.html">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-08-touch.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maxlau">
@@ -262,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">markdown-syntex</h1>
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(08)：touch</h1>
         
 
         <div class="post-meta">
@@ -274,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-23T15:17:40+08:00">
-                2017-04-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T07:10:23+08:00">
+                2018-04-19
               </time>
             
 
@@ -297,8 +295,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tips技巧/" itemprop="url" rel="index">
-                    <span itemprop="name">tips技巧</span>
+                  <a href="/categories/linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">linux系统</span>
                   </a>
                 </span>
 
@@ -334,66 +332,51 @@
       
 
       
-        <p>markdown是一种轻量级标记语言。具有很强的可读性，书写也很简单，很适合写作和作笔记记录。这篇文章只是一个简单的语法操作指南，需要了解详细的语法可以参考Markdown发布格式的发明者JOHN GRUBER的<a href="https://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">官方网站</a>，或者查看这份派生的<a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">简体中文版</a>。<a id="more"></a></p>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>标题是以”#”号标记，几个井号代表几级标题</p>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="# 一级标题"></a># 一级标题</h1><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="### 三级标题"></a>### 三级标题</h3><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="##### 五级标题"></a>##### 五级标题</h5><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表又分为有序列表和无序列表</p>
-<p>有序列表以”-”横岗标记，有序列表以”1. “标记</p>
-<p>*注意这些这些标记符号后面都要以空格隔开才能正确生成。</p>
-<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="- 无序列表"></a>- 无序列表</h4><ul>
-<li>列表文本一</li>
-<li>列表文本二</li>
-</ul>
-<h4 id="n-有序列表"><a href="#n-有序列表" class="headerlink" title="n.有序列表"></a>n.有序列表</h4><ol>
-<li>有序列表1</li>
-<li>有序列表2</li>
-</ol>
-<h3 id="连接和图片"><a href="#连接和图片" class="headerlink" title="连接和图片"></a>连接和图片</h3><p>[中括号 显示文本]（小括号 目标连接）</p>
-<p><a href="www.google.com">google</a></p>
-<p>插入图片有两种方式：</p>
-<p>​    直接把图片拖入到文档中</p>
-<p>​    ![]（图片链接）</p>
-<p><img src="http://img.taopic.com/uploads/allimg/140330/235060-1403300Q6268.jpg" alt=""></p>
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>“&gt;”后面加引用文字就可以了</p>
-<blockquote>
-<p>床前明月光，请对暗号？</p>
-</blockquote>
-<h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><p>两个“**”包含的文本就是粗体</p>
-<p>​        <strong>这是粗体</strong></p>
-<p>一个“*”号包含的文本就是斜体</p>
-<p>​        <em>这是斜体</em></p>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>使用<code>***</code>或者<code>---</code>，然后回车，来产生水平分割线。</p>
-<hr>
-<h3 id="代码引用"><a href="#代码引用" class="headerlink" title="代码引用"></a>代码引用</h3><p>单行代码引用”`”包含</p>
-<p>​        <code>&lt;?php echo  &quot;hello world&quot;; ?&gt;</code></p>
-<p>多行代码引用”~~~”包含</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"hello world"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>以”|“分割，再点击左上角设置表格行列</p>
-<table>
+        <p>一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件。 <a id="more"></a></p>
+<h1 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
 <thead>
 <tr>
-<th style="text-align:left">table</th>
-<th style="text-align:left">cool</th>
-<th style="text-align:left">are</th>
+<th>参数</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">apple</td>
-<td style="text-align:left">$1600</td>
-<td style="text-align:left">right-aligned</td>
+<td>-a</td>
+<td style="text-align:left">或–time=atime或–time=access或–time=use 　只更改存取时间。</td>
 </tr>
 <tr>
-<td style="text-align:left">tencent</td>
-<td style="text-align:left">$3000</td>
-<td style="text-align:left">centered</td>
+<td>-c</td>
+<td style="text-align:left">或–no-create 　不建立任何文档。</td>
 </tr>
 <tr>
-<td style="text-align:left">google</td>
-<td style="text-align:left">$3240</td>
-<td style="text-align:left">american</td>
+<td>-d</td>
+<td style="text-align:left">使用指定的日期时间，而非现在的时间。</td>
+</tr>
+<tr>
+<td>-f</td>
+<td style="text-align:left">此参数将忽略不予处理，仅负责解决BSD版本touch指令的兼容性问题。</td>
+</tr>
+<tr>
+<td>-m</td>
+<td style="text-align:left">或–time=mtime或–time=modify 　只更改变动时间。</td>
+</tr>
+<tr>
+<td>-r</td>
+<td style="text-align:left">把指定文档或目录的日期时间，统统设成和参考文档或目录的日期时间相同。</td>
+</tr>
+<tr>
+<td>-t</td>
+<td style="text-align:left">使用指定的日期时间，而非现在的时间。</td>
 </tr>
 </tbody>
 </table>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="touch-1"><a href="#touch-1" class="headerlink" title="touch"></a>touch</h3><p>创建不存在的文件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Leo$ touch log2018.log</span><br><span class="line">Leo$ ls</span><br><span class="line">log2018.log</span><br><span class="line">Leo$ ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:15 log2018.log</span><br><span class="line">Leo$</span><br></pre></td></tr></table></figure>
+<p>-r 更新log01.log的时间和log2018.log时间戳相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:18 log01.log</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:15 log2018.log</span><br><span class="line">Leo$ touch -r log01.log log2018.log</span><br><span class="line">Leo$ ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:18 log01.log</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:18 log2018.log</span><br></pre></td></tr></table></figure>
+<p>-t 设定文件的时间戳</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:18 log01.log</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:18 log2018.log</span><br><span class="line"></span><br><span class="line">#-t  time 使用指定的时间值 time 作为指定文件相应时间戳记的新值．此处的 time规定为如下形式的十进制数:      </span><br><span class="line">  [[CC]YY]MMDDhhmm[.SS]    </span><br><span class="line">Leo$ touch -t 201804152234 log01.log</span><br><span class="line">Leo$ ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 15 22:34 log01.log</span><br><span class="line">-rw-r--r--  1 liujieping  staff  0  4 19 07:18 log2018.log</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -411,9 +394,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/markdown/" rel="tag"># markdown</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/语法/" rel="tag"># 语法</a>
+            <a href="/tags/终端/" rel="tag"># 终端</a>
+          
+            <a href="/tags/命令/" rel="tag"># 命令</a>
           
         </div>
       
@@ -426,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/hello-world.html" rel="next" title="Hello Hexo!">
-                <i class="fa fa-chevron-left"></i> Hello Hexo!
+              <a href="/blog/linux-command-07-cp.html" rel="next" title="每天一个linux命令(07)：cp">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(07)：cp
               </a>
             
           </div>
@@ -435,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/linux-command-01-ls.html" rel="prev" title="每天一个linux命令(01)：ls">
-                每天一个linux命令(01)：ls <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -570,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一级标题"><span class="nav-number"></span> <span class="nav-text"># 一级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级标题"><span class="nav-number">1.</span> <span class="nav-text">### 三级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#五级标题"><span class="nav-number">1.0.1.</span> <span class="nav-text">##### 五级标题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无序列表"><span class="nav-number">2.1.</span> <span class="nav-text">- 无序列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#n-有序列表"><span class="nav-number">2.2.</span> <span class="nav-text">n.有序列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接和图片"><span class="nav-number">3.</span> <span class="nav-text">连接和图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粗体和斜体"><span class="nav-number">5.</span> <span class="nav-text">粗体和斜体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分割线"><span class="nav-number">6.</span> <span class="nav-text">分割线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码引用"><span class="nav-number">7.</span> <span class="nav-text">代码引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">8.</span> <span class="nav-text">表格</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#touch"><span class="nav-number">1.</span> <span class="nav-text">touch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#touch-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">touch</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
