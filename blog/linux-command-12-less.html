@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="既然可以利用mkdir创建目录，那当然有一个命令可以来删除它，那就是rm。 rm命令是remove的缩写，也是比较常用的命令，它的功能是删除一个目录中的一个或多个文件或目录，它也可以将某个目录及其下的所有文件及子目录均删除。 当然这需要在命令后跟一些命令参数，比如说-rf，对与这个命令一直有一个笑话，就是有人在网上问不小心执行了rm -rf /后怎么办，得票最高的答案是凉办。所以在执行rm之前最好">
+<meta name="description" content="less 工具也是对文件或其它输出进行分页显示的工具，应该说是linux正统查看文件内容的工具，功能极其强大。less 的用法比起 more 更加的有弹性。在 more 的时候，我们并没有办法向前面翻， 只能往后面看，但若使用了 less 时，就可以使用 pageup等按键的功能来往前往后翻看文件，更容易用来查看一个文件的内容！除此之外，在 less 里头可以拥有更多的搜索功能，不止可以向下搜，也">
 <meta name="keywords" content="linux,终端,命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个linux命令(05)：rm">
-<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-05-rm.html">
+<meta property="og:title" content="每天一个linux命令(12)：less">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-12-less.html">
 <meta property="og:site_name" content="Maxlau">
-<meta property="og:description" content="既然可以利用mkdir创建目录，那当然有一个命令可以来删除它，那就是rm。 rm命令是remove的缩写，也是比较常用的命令，它的功能是删除一个目录中的一个或多个文件或目录，它也可以将某个目录及其下的所有文件及子目录均删除。 当然这需要在命令后跟一些命令参数，比如说-rf，对与这个命令一直有一个笑话，就是有人在网上问不小心执行了rm -rf /后怎么办，得票最高的答案是凉办。所以在执行rm之前最好">
+<meta property="og:description" content="less 工具也是对文件或其它输出进行分页显示的工具，应该说是linux正统查看文件内容的工具，功能极其强大。less 的用法比起 more 更加的有弹性。在 more 的时候，我们并没有办法向前面翻， 只能往后面看，但若使用了 less 时，就可以使用 pageup等按键的功能来往前往后翻看文件，更容易用来查看一个文件的内容！除此之外，在 less 里头可以拥有更多的搜索功能，不止可以向下搜，也">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-14T09:23:14.000Z">
+<meta property="og:updated_time" content="2018-04-23T14:59:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个linux命令(05)：rm">
-<meta name="twitter:description" content="既然可以利用mkdir创建目录，那当然有一个命令可以来删除它，那就是rm。 rm命令是remove的缩写，也是比较常用的命令，它的功能是删除一个目录中的一个或多个文件或目录，它也可以将某个目录及其下的所有文件及子目录均删除。 当然这需要在命令后跟一些命令参数，比如说-rf，对与这个命令一直有一个笑话，就是有人在网上问不小心执行了rm -rf /后怎么办，得票最高的答案是凉办。所以在执行rm之前最好">
+<meta name="twitter:title" content="每天一个linux命令(12)：less">
+<meta name="twitter:description" content="less 工具也是对文件或其它输出进行分页显示的工具，应该说是linux正统查看文件内容的工具，功能极其强大。less 的用法比起 more 更加的有弹性。在 more 的时候，我们并没有办法向前面翻， 只能往后面看，但若使用了 less 时，就可以使用 pageup等按键的功能来往前往后翻看文件，更容易用来查看一个文件的内容！除此之外，在 less 里头可以拥有更多的搜索功能，不止可以向下搜，也">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-05-rm.html"/>
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-12-less.html"/>
 
 
 
 
 
-  <title>每天一个linux命令(05)：rm | Maxlau</title>
+  <title>每天一个linux命令(12)：less | Maxlau</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-05-rm.html">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-12-less.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maxlau">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">每天一个linux命令(05)：rm</h1>
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(12)：less</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T17:23:23+08:00">
-                2018-04-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T20:20:24+08:00">
+                2018-04-23
               </time>
             
 
@@ -332,10 +332,8 @@
       
 
       
-        <p>既然可以利用mkdir创建目录，那当然有一个命令可以来删除它，那就是rm。</p>
-<p>rm命令是remove的缩写，也是比较常用的命令，它的功能是删除一个目录中的一个或多个文件或目录，它也可以将某个目录及其下的所有文件及子目录均删除。</p>
-<p>当然这需要在命令后跟一些命令参数，比如说-rf，对与这个命令一直有一个笑话，就是有人在网上问不小心执行了rm -rf /后怎么办，得票最高的答案是凉办。所以在执行rm之前最好先确认一下在哪个目录，到底要删除什么东西，操作时保持高度清醒的头脑。另外对于链接文件，只是删除了链接，原有文件均保持不变。<a id="more"></a></p>
-<h1 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
+        <p>less 工具也是对文件或其它输出进行分页显示的工具，应该说是linux正统查看文件内容的工具，功能极其强大。less 的用法比起 more 更加的有弹性。在 more 的时候，我们并没有办法向前面翻， 只能往后面看，但若使用了 less 时，就可以使用 pageup等按键的功能来往前往后翻看文件，更容易用来查看一个文件的内容！除此之外，在 less 里头可以拥有更多的搜索功能，不止可以向下搜，也可以向上搜。 <a id="more"></a></p>
+<h1 id="less"><a href="#less" class="headerlink" title="less"></a>less</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
 <thead>
 <tr>
 <th>参数</th>
@@ -344,33 +342,119 @@
 </thead>
 <tbody>
 <tr>
+<td>-b</td>
+<td style="text-align:left">&lt;缓冲区大小&gt; 设置缓冲区的大小</td>
+</tr>
+<tr>
+<td>-e</td>
+<td style="text-align:left">当文件显示结束后，自动离开</td>
+</tr>
+<tr>
 <td>-f</td>
-<td style="text-align:left">–force    忽略不存在的文件，从不给出提示。</td>
+<td style="text-align:left">强迫打开特殊文件，例如外围设备代号、目录和二进制文件</td>
 </tr>
 <tr>
-<td>-i</td>
-<td style="text-align:left">–interactive 进行交互式删除</td>
+<td>-g</td>
+<td style="text-align:left">只标志最后搜索的关键词</td>
 </tr>
 <tr>
-<td>-r</td>
-<td style="text-align:left">–recursive   指示rm将参数中列出的全部目录和子目录均递归地删除。</td>
+<td>-m</td>
+<td style="text-align:left">显示类似more命令的百分比</td>
 </tr>
 <tr>
-<td>-v</td>
-<td style="text-align:left">–verbose    详细显示进行的步骤</td>
+<td>-N</td>
+<td style="text-align:left">显示每行的行号</td>
+</tr>
+<tr>
+<td>-o</td>
+<td style="text-align:left">&lt;文件名&gt; 将less 输出的内容在指定文件中保存起来</td>
+</tr>
+<tr>
+<td>-s</td>
+<td style="text-align:left">显示连续空行为一行</td>
+</tr>
+<tr>
+<td>-S</td>
+<td style="text-align:left">行过长时间将超出部分舍弃</td>
 </tr>
 </tbody>
 </table>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="rm-1"><a href="#rm-1" class="headerlink" title="rm"></a>rm</h3><p>不带命令参数一般会有提示 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test1]# ll</span><br><span class="line">总计 4</span><br><span class="line">-rw-r--r-- 1 root root 56 10-26 14:31 log.log</span><br><span class="line">root@localhost test1]# rm log.log </span><br><span class="line">rm：是否删除 一般文件 “log.log”? y</span><br><span class="line">root@localhost test1]# ll</span><br><span class="line">总计 0[root@localhost test1]#</span><br></pre></td></tr></table></figure>
-<p>-f 强行删除文件file，系统也不再提示 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test1]# ll</span><br><span class="line">总计 4</span><br><span class="line">-rw-r--r-- 1 root root 23 10-26 14:40 log1.log</span><br><span class="line">[root@localhost test1]# rm -f log1.log </span><br><span class="line">[root@localhost test1]# ll</span><br><span class="line">总计 0[root@localhost test1]#</span><br></pre></td></tr></table></figure>
-<p>-i 逐一提示删除文件file </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test1]# ll</span><br><span class="line">总计 8</span><br><span class="line">-rw-r--r-- 1 root root 11 10-26 14:45 log1.log</span><br><span class="line">-rw-r--r-- 1 root root 24 10-26 14:45 log2.log</span><br><span class="line">[root@localhost test1]# rm -i *.log</span><br><span class="line">rm：是否删除 一般文件 “log1.log”? y</span><br><span class="line">rm：是否删除 一般文件 “log2.log”? y</span><br><span class="line">[root@localhost test1]# ll</span><br><span class="line">总计 0[root@localhost test1]#</span><br></pre></td></tr></table></figure>
-<p>-r 递归删除目录及子目录中所有档案删除file </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 24drwxr-xr-x 7 root root 4096 10-25 18:07 scf</span><br><span class="line">drwxr-xr-x 2 root root 4096 10-26 14:51 test1</span><br><span class="line">drwxr-xr-x 3 root root 4096 10-25 17:44 test2</span><br><span class="line">drwxrwxrwx 2 root root 4096 10-25 17:46 test3</span><br><span class="line">drwxr-xr-x 2 root root 4096 10-25 17:56 test4</span><br><span class="line">drwxr-xr-x 3 root root 4096 10-25 17:56 test5</span><br><span class="line">[root@localhost test]# rm -r test1</span><br><span class="line">rm：是否进入目录 “test1”? y</span><br><span class="line">rm：是否删除 一般文件 “test1/log3.log”? y</span><br><span class="line">rm：是否删除 目录 “test1”? y</span><br><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 20drwxr-xr-x 7 root root 4096 10-25 18:07 scf</span><br><span class="line">drwxr-xr-x 3 root root 4096 10-25 17:44 test2</span><br><span class="line">drwxrwxrwx 2 root root 4096 10-25 17:46 test3</span><br><span class="line">drwxr-xr-x 2 root root 4096 10-25 17:56 test4</span><br><span class="line">drwxr-xr-x 3 root root 4096 10-25 17:56 test5</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
-<p>-rf 如果文件太多，用r参数就会很麻烦。这时可以用不提示地强行递归删除目录及子目录中所有档案删除file，这是一个命令参数组合，当然前提是删除的目标是百分百确定要删除的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# rm -rf test2</span><br><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 16drwxr-xr-x 7 root root 4096 10-25 18:07 scf</span><br><span class="line">drwxrwxrwx 2 root root 4096 10-25 17:46 test3</span><br><span class="line">drwxr-xr-x 2 root root 4096 10-25 17:56 test4</span><br><span class="line">drwxr-xr-x 3 root root 4096 10-25 17:56 test5</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>向下搜索“字符串”的功能</td>
+</tr>
+<tr>
+<td>?</td>
+<td>向上搜索“字符串”的功能</td>
+</tr>
+<tr>
+<td>n N</td>
+<td>重复前一个搜索,</td>
+</tr>
+<tr>
+<td>f</td>
+<td>向前翻一页</td>
+</tr>
+<tr>
+<td>b</td>
+<td>向后翻一页</td>
+</tr>
+<tr>
+<td>d</td>
+<td>向后翻半页</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>退出less 命令</td>
+</tr>
+<tr>
+<td>u</td>
+<td>向前滚动半页</td>
+</tr>
+<tr>
+<td>y</td>
+<td>向前滚动一行</td>
+</tr>
+<tr>
+<td>空格键</td>
+<td>滚动一行</td>
+</tr>
+<tr>
+<td>回车键</td>
+<td>滚动一页</td>
+</tr>
+<tr>
+<td>[pagedown]</td>
+<td>向下翻动一页</td>
+</tr>
+<tr>
+<td>[pageup]</td>
+<td>向上翻动一页</td>
+</tr>
+</tbody>
+</table>
+<p>实践：</p>
+<p>​    d 和u是一对冤家，d向后翻半页，y向前翻半页。</p>
+<p>​    y和空格键又是一对，y向前滚一行，空格键向后一行。</p>
+<p>​    f向前翻一页，b向后返翻一页，翻整页的一对。</p>
+<p>​    j - 向前移动一行，k - 向后移动一行</p>
+<p>​    G - 移动到最后一行，g - 移动到第一行</p>
+<p>​    v - 使用配置的编辑器编辑当前文件</p>
+<p>​    q / ZZ - 退出 less 命令</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="less-1"><a href="#less-1" class="headerlink" title="less"></a>less</h3><p>一般查看文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Leo$ less -Q 1_6_5_newton.py</span><br><span class="line">Leo$</span><br></pre></td></tr></table></figure>
+<p>ps查看进程信息并通过less分页显示  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ps -ef |less</span><br><span class="line"></span><br><span class="line">  UID   PID  PPID   C STIME   TTY           TIME CMD</span><br><span class="line">    0     1     0   0 五10下午 ??         3:09.83 /sbin/launchd</span><br><span class="line">    0    48     1   0 五10下午 ??         0:24.89 /usr/sbin/syslogd</span><br><span class="line">    0    49     1   0 五10下午 ??         0:15.03 /usr/libexec/UserEventAgent (System)</span><br><span class="line">    0    51     1   0 五10下午 ??         0:04.44 /usr/libexec/kextd</span><br></pre></td></tr></table></figure>
+<p>查看命令历史使用记录并通过less分页显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Leo$ history | less</span><br><span class="line"></span><br><span class="line">   72  cd ~/blog</span><br><span class="line">   73  ls</span><br><span class="line">   74  git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br><span class="line">   75  hexo s --debug</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -405,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/linux-command-04-mkdir.html" rel="next" title="每天一个linux命令(04)：mkdir">
-                <i class="fa fa-chevron-left"></i> 每天一个linux命令(04)：mkdir
+              <a href="/blog/linux-command-11-more.html" rel="next" title="每天一个linux命令(11)：more">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(11)：more
               </a>
             
           </div>
@@ -414,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/linux-command-06-mv.html" rel="prev" title="每天一个linux命令(06)：mv">
-                每天一个linux命令(06)：mv <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rm"><span class="nav-number">1.</span> <span class="nav-text">rm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">rm</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#less"><span class="nav-number">1.</span> <span class="nav-text">less</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用操作"><span class="nav-number">1.2.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.3.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#less-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">less</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
