@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,终端,命令," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="find一些常用参数的一些常用实例和一些具体用法和注意事项。">
+<meta name="keywords" content="linux,终端,命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令(18)：find detail">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-18-find_detail.html">
+<meta property="og:site_name" content="Maxlau">
+<meta property="og:description" content="find一些常用参数的一些常用实例和一些具体用法和注意事项。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-05T15:47:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令(18)：find detail">
+<meta name="twitter:description" content="find一些常用参数的一些常用实例和一些具体用法和注意事项。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-18-find_detail.html"/>
+
+
+
+
+
+  <title>每天一个linux命令(18)：find detail | Maxlau</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Maxlau</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-18-find_detail.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maxlau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxlau">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(18)：find detail</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T20:49:47+08:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>find一些常用参数的一些常用实例和一些具体用法和注意事项。 <a id="more"></a></p>
+<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h4 id="name"><a href="#name" class="headerlink" title="-name"></a>-name</h4><p>文件名选项是find命令最常用的选项，要么单独使用该选项，要么和其他选项一起使用。  可以使用某种文件名模式来匹配文件，记住要用引号将文件名模式引起来。  不管当前路径是什么，如果想要在自己的根目录$HOME中查找文件名符合*.log的文件，使用~作为 ‘pathname’参数，波浪号~代表了你的$HOME目录。</p>
+<p>想要在当前目录及子目录中查找所有的‘ *.py‘文件，可以用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Leo$ find . -name &quot;*.py&quot; -print</span><br><span class="line">./1_5_5_fibo.py</span><br><span class="line">./1_6_1_sum.py</span><br><span class="line">./1_6_2_rooting.py</span><br><span class="line">./1_6_3_fav.py</span><br><span class="line">./1_6_3_sqrt.py</span><br><span class="line">./1_6_5_newton.py</span><br><span class="line">./1_6_5_newton_sqrt.py</span><br><span class="line">./1_6_6_currying.py</span><br><span class="line">./1_6_9_decorator.py</span><br><span class="line">./1_6_area.py</span><br><span class="line">./1_7_1_recursive.py</span><br><span class="line">./1_7_2_luhn.py</span><br><span class="line">./1_7_2_mu_rec.py</span><br><span class="line">./1_7_3_game.py</span><br><span class="line">./1_7_3_inverse.py</span><br><span class="line">./1_7_4_tree_fib.py</span><br><span class="line">./1_7_5_partition.py</span><br><span class="line">./1_7_sum_digits.py</span><br><span class="line">./test.py</span><br><span class="line">Leo$</span><br></pre></td></tr></table></figure>
+<p>想要的当前目录及子目录中查找文件名以一个大写字母开头的文件，可以用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Leo$ find . -name &quot;[A-Z]&quot; -print</span><br><span class="line">find: ./.emacs.d/auto-save-list: Permission denied</span><br><span class="line">./Downloads/Adobe_Illustrator_CS6_mac/amtlib.framework/Versions/A</span><br><span class="line">./Downloads/amtlib.framework/Versions/A</span><br><span class="line">./Dropbox/Team/S</span><br><span class="line">./Library/Application Support/Google/Android File Transfer/Android File Transfer Agent.app/Contents/Frameworks/Breakpad.framework/Versions/A</span><br><span class="line">./Library/Application Support/Sublime Text 3/Cache/D</span><br><span class="line">./Library/Application Support/Sublime Text 3/Cache/R</span><br></pre></td></tr></table></figure>
+<p>想要在/usr目录中查找文件名以host开头的文件，可以用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">Leo$ find /usr -name &quot;host*&quot; -print</span><br><span class="line">/usr/bin/host</span><br><span class="line">/usr/bin/hostinfo</span><br><span class="line">/usr/include/mach/host_info.h</span><br><span class="line">/usr/include/mach/host_notify.h</span><br><span class="line">/usr/include/mach/host_notify_reply.defs</span><br><span class="line">/usr/include/mach/host_priv.defs</span><br><span class="line">/usr/include/mach/host_priv.h</span><br><span class="line">/usr/include/mach/host_reboot.h</span><br><span class="line">/usr/include/mach/host_security.defs</span><br><span class="line">/usr/include/mach/host_security.h</span><br><span class="line">/usr/include/mach/host_special_ports.h</span><br><span class="line">/usr/local/Cellar/gettext/0.19.8.1/lib/gettext/hostname</span><br><span class="line">/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/hostdb.rb</span><br><span class="line">/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/hostess.rb</span><br><span class="line">/usr/local/lib/node_modules/npm/node_modules/hosted-git-info</span><br><span class="line">/usr/local/lib/node_modules/npm/node_modules/pacote/lib/fetchers/hosted.js</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/performance_schema/host_cache.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/performance_schema/hosts.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/sys/host_summary.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/sys/host_summary_by_file_io.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/sys/host_summary_by_file_io_type.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/sys/host_summary_by_stages.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/sys/host_summary_by_statement_latency.frm</span><br><span class="line">/usr/local/mysql-5.7.18-macos10.12-x86_64/data/sys/host_summary_by_statement_type.frm</span><br><span class="line">/usr/local/mysql.bak/data/performance_schema/host_cache.frm</span><br><span class="line">/usr/local/mysql.bak/data/performance_schema/hosts.frm</span><br><span class="line">/usr/local/mysql.bak/data/sys/host_summary.frm</span><br><span class="line">/usr/local/mysql.bak/data/sys/host_summary_by_file_io.frm</span><br><span class="line">/usr/local/mysql.bak/data/sys/host_summary_by_file_io_type.frm</span><br><span class="line">/usr/local/mysql.bak/data/sys/host_summary_by_stages.frm</span><br><span class="line">/usr/local/mysql.bak/data/sys/host_summary_by_statement_latency.frm</span><br><span class="line">/usr/local/mysql.bak/data/sys/host_summary_by_statement_type.frm</span><br><span class="line">find: /usr/sbin/authserver: Permission denied</span><br><span class="line">/usr/share/man/man1/host.1</span><br><span class="line">/usr/share/man/man1/hostname.1</span><br><span class="line">/usr/share/man/man5/hosts.5</span><br><span class="line">/usr/share/man/man5/hosts.equiv.5</span><br><span class="line">/usr/share/man/man7/hostname.7</span><br><span class="line">/usr/share/man/man8/hostinfo.8</span><br><span class="line">/usr/share/vim/vim73/ftplugin/hostconf.vim</span><br><span class="line">/usr/share/vim/vim73/ftplugin/hostsaccess.vim</span><br><span class="line">/usr/share/vim/vim73/syntax/hostconf.vim</span><br><span class="line">Leo$</span><br></pre></td></tr></table></figure>
+<p>如果想在当前目录查找文件名以一个个小写字母开头，最后是4到9加上.log结束的文件：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 316</span><br><span class="line">-rw-r--r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">-rw-r--r-- 1 root root     61 11-13 06:03 log2013.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">drwxr-xr-x 6 root root   4096 10-27 01:58 scf</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 06:08 test3</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 05:50 test4</span><br><span class="line">[root@localhost test]# find . -name &quot;[a-z]*[4-9].log&quot; -print</span><br><span class="line">./log2014.log</span><br><span class="line">./log2015.log</span><br><span class="line">./test4/log2014.log</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
+<h4 id="perm"><a href="#perm" class="headerlink" title="-perm"></a>-perm</h4><p>按照文件权限模式用-perm选项,按文件权限模式来查找文件的话。最好使用八进制的权限表示法。  </p>
+<p>如在当前目录下查找文件权限位为755的文件，即文件属主可以读、写、执行，其他用户可以读、执行的文件，可以用：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# find . -perm 755 -print</span><br><span class="line">.</span><br><span class="line">./scf</span><br><span class="line">./scf/lib</span><br><span class="line">./scf/service</span><br><span class="line">./scf/service/deploy</span><br><span class="line">./scf/service/deploy/product</span><br><span class="line">./scf/service/deploy/info</span><br><span class="line">./scf/doc</span><br><span class="line">./scf/bin</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
+<p>还有一种表达方法：在八进制数字前面要加一个横杠-，表示都匹配，如-007就相当于777，-005相当于555,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 316</span><br><span class="line">-rw-r--r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">-rw-r--r-- 1 root root     61 11-13 06:03 log2013.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">drwxr-xr-x 6 root root   4096 10-27 01:58 scf</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 06:08 test3</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 05:50 test4</span><br><span class="line">[root@localhost test]# find . -perm -005</span><br><span class="line">.</span><br><span class="line">./test4</span><br><span class="line">./scf</span><br><span class="line">./scf/lib</span><br><span class="line">./scf/service</span><br><span class="line">./scf/service/deploy</span><br><span class="line">./scf/service/deploy/product</span><br><span class="line">./scf/service/deploy/info</span><br><span class="line">./scf/doc</span><br><span class="line">./scf/bin</span><br><span class="line">./test3</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
+<h4 id="忽略某个目录"><a href="#忽略某个目录" class="headerlink" title="忽略某个目录"></a>忽略某个目录</h4><p>如果在查找文件时希望忽略某个目录，因为你知道那个目录中没有你所要查找的文件，那么可以使用-prune选项来指出需要忽略的目录。在使用-prune选项时要当心，因为如果你同时使用了-depth选项，那么-prune选项就会被find命令忽略。如果希望在test目录下查找文件，但不希望在test/test3目录下查找，可以用： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]# find test -path &quot;test/test3&quot; -prune -o -print</span><br><span class="line">test</span><br><span class="line">test/log2014.log</span><br><span class="line">test/log2015.log</span><br><span class="line">test/test4</span><br><span class="line">test/test4/log2014.log</span><br><span class="line">test/test4/log2013.log</span><br><span class="line">test/test4/log2012.log</span><br><span class="line">test/scf</span><br><span class="line">test/scf/lib</span><br><span class="line">test/scf/service</span><br><span class="line">test/scf/service/deploy</span><br><span class="line">test/scf/service/deploy/product</span><br><span class="line">test/scf/service/deploy/info</span><br><span class="line">test/scf/doc</span><br><span class="line">test/scf/bin</span><br><span class="line">test/log2013.log</span><br><span class="line">test/log2012.log</span><br><span class="line">[root@localhost soft]#</span><br></pre></td></tr></table></figure>
+<p>避开多个文件夹:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]# find test \( -path test/test4 -o -path test/test3 \) -prune -o -print</span><br><span class="line">test</span><br><span class="line">test/log2014.log</span><br><span class="line">test/log2015.log</span><br><span class="line">test/scf</span><br><span class="line">test/scf/lib</span><br><span class="line">test/scf/service</span><br><span class="line">test/scf/service/deploy</span><br><span class="line">test/scf/service/deploy/product</span><br><span class="line">test/scf/service/deploy/info</span><br><span class="line">test/scf/doc</span><br><span class="line">test/scf/bin</span><br><span class="line">test/log2013.log</span><br><span class="line">test/log2012.log</span><br><span class="line">[root@localhost soft]#</span><br></pre></td></tr></table></figure>
+<p>查找某一确定文件，-name等选项加在-o 之后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]# find test \( -path test/test4 -o -path test/test3 \) -prune -o -name &quot;*.log&quot; -print</span><br><span class="line">test/log2014.log</span><br><span class="line">test/log2015.log</span><br><span class="line">test/log2013.log</span><br><span class="line">test/log2012.log</span><br><span class="line">[root@localhost soft]#</span><br></pre></td></tr></table></figure>
+<h4 id="使用user和nouser选项"><a href="#使用user和nouser选项" class="headerlink" title="使用user和nouser选项"></a>使用user和nouser选项</h4><p>按文件属主查找文件：</p>
+<p>实例1：在$HOME目录中查找文件属主为peida的文件 </p>
+<p>命令：</p>
+<p>find ~ -user peida -print  </p>
+<p>实例2：在/etc目录下查找文件属主为peida的文件: </p>
+<p>命令：</p>
+<p>find /etc -user peida -print  </p>
+<p>####使用group和nogroup选项：</p>
+<p>就像user和nouser选项一样，针对文件所属于的用户组， find命令也具有同样的选项，为了在/apps目录下查找属于gem用户组的文件，可以用：  </p>
+<p>find /apps -group gem -print  </p>
+<p>要查找没有有效所属用户组的所有文件，可以使用nogroup选项。下面的find命令从文件系统的根目录处查找这样的文件:</p>
+<p>find / -nogroup-print</p>
+<h4 id="按照更改时间或访问时间等查找文件："><a href="#按照更改时间或访问时间等查找文件：" class="headerlink" title="按照更改时间或访问时间等查找文件："></a>按照更改时间或访问时间等查找文件：</h4><p>如果希望按照更改时间来查找文件，可以使用mtime,atime或ctime选项。如果系统突然没有可用空间了，很有可能某一个文件的长度在此期间增长迅速，这时就可以用mtime选项来查找这样的文件。  </p>
+<p>用减号-来限定更改时间在距今n日以内的文件，而用加号+来限定更改时间在距今n日以前的文件。  </p>
+<p>希望在系统根目录下查找更改时间在5日以内的文件，可以用：</p>
+<p>find / -mtime -5 -print</p>
+<p>为了在/var/adm目录下查找更改时间在3日以前的文件，可以用:</p>
+<p>find /var/adm -mtime +3 -print</p>
+<h4 id="查找比某个文件新或旧的文件："><a href="#查找比某个文件新或旧的文件：" class="headerlink" title="查找比某个文件新或旧的文件："></a>查找比某个文件新或旧的文件：</h4><p>如果希望查找更改时间比某个文件新但比另一个文件旧的所有文件，可以使用-newer选项。</p>
+<p>它的一般形式为：  </p>
+<p>newest_file_name ! oldest_file_name  </p>
+<p>其中，！是逻辑非符号。 </p>
+<p>查找更改时间比文件log2012.log新但比文件log2017.log旧的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 316</span><br><span class="line">-rw-r--r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">-rw-r--r-- 1 root root     61 11-13 06:03 log2013.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-16 14:41 log2016.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-16 14:43 log2017.log</span><br><span class="line">drwxr-xr-x 6 root root   4096 10-27 01:58 scf</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 06:08 test3</span><br><span class="line">drwxrwxr-x 2 root root   4096 11-13 05:50 test4</span><br><span class="line">[root@localhost test]# find -newer log2012.log ! -newer log2017.log</span><br><span class="line">.</span><br><span class="line">./log2015.log</span><br><span class="line">./log2017.log</span><br><span class="line">./log2016.log</span><br><span class="line">./test3</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
+<p>查找更改时间在比log2012.log文件新的文件 :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# find -newer log2012.log</span><br><span class="line">.</span><br><span class="line">./log2015.log</span><br><span class="line">./log2017.log</span><br><span class="line">./log2016.log</span><br><span class="line">./test3</span><br><span class="line">[root@localhost test]#</span><br></pre></td></tr></table></figure>
+<h4 id="使用type选项："><a href="#使用type选项：" class="headerlink" title="使用type选项："></a>使用type选项：</h4><p>实例1：在/etc目录下查找所有的目录  </p>
+<p>命令：</p>
+<p>find /etc -type d -print  </p>
+<p>实例2：在当前目录下查找除目录以外的所有类型的文件  </p>
+<p>命令：</p>
+<p>find . ! -type d -print  </p>
+<p>实例3：在/etc目录下查找所有的符号链接文件</p>
+<p>命令：</p>
+<p>find /etc -type l -print</p>
+<h4 id="使用size选项："><a href="#使用size选项：" class="headerlink" title="使用size选项："></a>使用size选项：</h4><p>可以按照文件长度来查找文件，这里所指的文件长度既可以用块（block）来计量，也可以用字节来计量。以字节计量文件长度的表达形式为N c；以块计量文件长度只用数字表示即可。  </p>
+<p>在按照文件长度查找文件时，一般使用这种以字节表示的文件长度，在查看文件系统的大小，因为这时使用块来计量更容易转换。  </p>
+<p>实例1：在当前目录下查找文件长度大于1 M字节的文件  </p>
+<p>命令：</p>
+<p>find . -size +1000000c -print</p>
+<p>实例2：在/home/apache目录下查找文件长度恰好为100字节的文件:  </p>
+<p>命令：</p>
+<p>find /home/apache -size 100c -print  </p>
+<p>实例3：在当前目录下查找长度超过10块的文件（一块等于512字节） </p>
+<p>命令：</p>
+<p>find . -size +10 -print</p>
+<h4 id="使用depth选项："><a href="#使用depth选项：" class="headerlink" title="使用depth选项："></a>使用depth选项：</h4><p>在使用find命令时，可能希望先匹配所有的文件，再在子目录中查找。使用depth选项就可以使find命令这样做。这样做的一个原因就是，当在使用find命令向磁带上备份文件系统时，希望首先备份所有的文件，其次再备份子目录中的文件。  </p>
+<p>实例1：find命令从文件系统的根目录开始，查找一个名为CON.FILE的文件。   </p>
+<p>命令：</p>
+<p>find / -name “CON.FILE” -depth -print</p>
+<p>说明：</p>
+<p>它将首先匹配所有的文件然后再进入子目录中查找</p>
+<p>####使用mount选项： </p>
+<pre><code>在当前的文件系统中查找文件（不进入其他文件系统），可以使用find命令的mount选项。
+</code></pre><p>实例1：从当前目录开始查找位于本文件系统中文件名以XC结尾的文件  </p>
+<p>命令：</p>
+<p>find . -name “*.XC” -mount -print </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/终端/" rel="tag"># 终端</a>
+          
+            <a href="/tags/命令/" rel="tag"># 命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/linux-command-17-find_exec.html" rel="next" title="每天一个linux命令(17)：find -exec">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(17)：find -exec
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Maxlau</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#find"><span class="nav-number">1.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.1.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#name"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">-name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#perm"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">-perm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#忽略某个目录"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">忽略某个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用user和nouser选项"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">使用user和nouser选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照更改时间或访问时间等查找文件："><span class="nav-number">1.1.0.5.</span> <span class="nav-text">按照更改时间或访问时间等查找文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找比某个文件新或旧的文件："><span class="nav-number">1.1.0.6.</span> <span class="nav-text">查找比某个文件新或旧的文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用type选项："><span class="nav-number">1.1.0.7.</span> <span class="nav-text">使用type选项：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用size选项："><span class="nav-number">1.1.0.8.</span> <span class="nav-text">使用size选项：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用depth选项："><span class="nav-number">1.1.0.9.</span> <span class="nav-text">使用depth选项：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maxlau</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
