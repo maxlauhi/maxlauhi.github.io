@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="cp命令是copy的缩写，用来复制文件或者目录，是比较常用的命令之一。在命令行下复制文件时，如果目标文件已经存在，就会询问是否覆盖，不管你是否使用-i参数。但是如果是在shell脚本中执行cp时，没有-i参数时不会询问是否覆盖，这说明命令行和shell脚本的执行方式有些不同。">
+<meta name="description" content="Linux 文件或目录的属性主要包括：文件或目录的节点、种类、权限模式、链接数量、所归属的用户和用户组、最近访问或修改的时间等内容。">
 <meta name="keywords" content="linux,终端,命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个linux命令(07)：cp">
-<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-07-cp.html">
+<meta property="og:title" content="每天一个linux命令(20)：Linux file attribute">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-21-Linux_file_attribute.html">
 <meta property="og:site_name" content="Maxlau">
-<meta property="og:description" content="cp命令是copy的缩写，用来复制文件或者目录，是比较常用的命令之一。在命令行下复制文件时，如果目标文件已经存在，就会询问是否覆盖，不管你是否使用-i参数。但是如果是在shell脚本中执行cp时，没有-i参数时不会询问是否覆盖，这说明命令行和shell脚本的执行方式有些不同。">
+<meta property="og:description" content="Linux 文件或目录的属性主要包括：文件或目录的节点、种类、权限模式、链接数量、所归属的用户和用户组、最近访问或修改的时间等内容。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-17T15:16:37.000Z">
+<meta property="og:updated_time" content="2018-05-12T08:15:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个linux命令(07)：cp">
-<meta name="twitter:description" content="cp命令是copy的缩写，用来复制文件或者目录，是比较常用的命令之一。在命令行下复制文件时，如果目标文件已经存在，就会询问是否覆盖，不管你是否使用-i参数。但是如果是在shell脚本中执行cp时，没有-i参数时不会询问是否覆盖，这说明命令行和shell脚本的执行方式有些不同。">
+<meta name="twitter:title" content="每天一个linux命令(20)：Linux file attribute">
+<meta name="twitter:description" content="Linux 文件或目录的属性主要包括：文件或目录的节点、种类、权限模式、链接数量、所归属的用户和用户组、最近访问或修改的时间等内容。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-07-cp.html"/>
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-21-Linux_file_attribute.html"/>
 
 
 
 
 
-  <title>每天一个linux命令(07)：cp | Maxlau</title>
+  <title>每天一个linux命令(20)：Linux file attribute | Maxlau</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-07-cp.html">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-21-Linux_file_attribute.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maxlau">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">每天一个linux命令(07)：cp</h1>
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(20)：Linux file attribute</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T22:53:23+08:00">
-                2018-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T16:53:27+08:00">
+                2018-05-12
               </time>
             
 
@@ -332,61 +332,36 @@
       
 
       
-        <p>cp命令是copy的缩写，用来复制文件或者目录，是比较常用的命令之一。在命令行下复制文件时，如果目标文件已经存在，就会询问是否覆盖，不管你是否使用-i参数。但是如果是在shell脚本中执行cp时，没有-i参数时不会询问是否覆盖，这说明命令行和shell脚本的执行方式有些不同。 <a id="more"></a></p>
-<h1 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-a</td>
-<td style="text-align:left">–archive    等于-dR –preserve=all</td>
-</tr>
-<tr>
-<td>-f</td>
-<td style="text-align:left">–force  如果目标文件无法打开则将其移除并重试(当 -n 选项存在时则不需再选此项)</td>
-</tr>
-<tr>
-<td>-i</td>
-<td style="text-align:left">–interactive 覆盖前询问(使前面的 -n 选项失效)</td>
-</tr>
-<tr>
-<td>-H</td>
-<td style="text-align:left">跟随源文件中的命令行符号链接</td>
-</tr>
-<tr>
-<td>-l</td>
-<td style="text-align:left">–link 链接文件而不复制</td>
-</tr>
-<tr>
-<td>-L</td>
-<td style="text-align:left">–dereference   总是跟随符号链接</td>
-</tr>
-<tr>
-<td>-n</td>
-<td style="text-align:left">–no-clobber  不要覆盖已存在的文件(使前面的 -i 选项失效)</td>
-</tr>
-<tr>
-<td>-P</td>
-<td style="text-align:left">–no-dereference   不跟随源文件中的符号链接</td>
-</tr>
-<tr>
-<td>-p</td>
-<td style="text-align:left">等于–preserve=模式,所有权,时间戳</td>
-</tr>
-<tr>
-<td>-r, -R</td>
-<td style="text-align:left">-R, -r, –recursive  复制目录及目录内的所有项目</td>
-</tr>
-</tbody>
-</table>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="cp-1"><a href="#cp-1" class="headerlink" title="cp"></a>cp</h3><p>不带命令参数一般会有提示 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Leo$ ls</span><br><span class="line">README</span><br><span class="line">Leo$ cp README ../</span><br><span class="line">Leo$ ls ../</span><br><span class="line">README</span><br></pre></td></tr></table></figure>
-<p>-a 如果目标文件已经存在，则询问是否覆盖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# cp log.log test5</span><br><span class="line">cp：是否覆盖“test5/log.log”? n</span><br><span class="line">[root@localhost test]# cp -a log.log test5</span><br><span class="line">cp：是否覆盖“test5/log.log”? y</span><br><span class="line">[root@localhost test]# cd test5/</span><br><span class="line">[root@localhost test5]# ll</span><br><span class="line">-rw-r--r-- 1 root root 0 10-28 14:46 log5-1.log</span><br><span class="line">-rw-r--r-- 1 root root 0 10-28 14:46 log5-2.log</span><br><span class="line">-rw-r--r-- 1 root root 0 10-28 14:46 log5-3.log</span><br><span class="line">-rw-r--r-- 1 root root 0 10-28 14:48 log.log</span><br></pre></td></tr></table></figure>
+        <p>Linux 文件或目录的属性主要包括：文件或目录的节点、种类、权限模式、链接数量、所归属的用户和用户组、最近访问或修改的时间等内容。<a id="more"></a></p>
+<p>具体情况如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ls -lih</span><br><span class="line">总计 316K</span><br><span class="line">2095120 lrwxrwxrwx 1 root root   11 11-22 06:58 linklog.log -&gt; log2012.log</span><br><span class="line">2095112 -rw-r--r-- 1 root root 296K 11-13 06:03 log2012.log</span><br><span class="line">2095110 -rw-r--r-- 1 root root   61 11-13 06:03 log2013.log</span><br><span class="line">2095107 -rw-r--r-- 1 root root    0 11-13 06:03 log2014.log</span><br><span class="line">2095117 -rw-r--r-- 1 root root    0 11-13 06:06 log2015.log</span><br><span class="line">2095118 -rw-r--r-- 1 root root    0 11-16 14:41 log2016.log</span><br><span class="line">2095119 -rw-r--r-- 1 root root    0 11-16 14:43 log2017.log</span><br><span class="line">2095113 drwxr-xr-x 6 root root 4.0K 10-27 01:58 scf</span><br><span class="line">2095109 drwxrwxr-x 2 root root 4.0K 11-13 06:08 test3</span><br><span class="line">2095131 drwxrwxr-x 2 root root 4.0K 11-13 05:50 test4</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<p>第一列：inode</p>
+<p>第二列：文件种类和权限；</p>
+<p>第三列： 硬链接个数；</p>
+<p>第四列： 属主；</p>
+<p>第五列：所归属的组；</p>
+<p>第六列：文件或目录的大小；</p>
+<p>第七列和第八列：最后访问或修改时间；</p>
+<p>第九列：文件名或目录名</p>
+<p>我们以log2012.log为例：</p>
+<p>2095112 -rw-r–r– 1 root root 296K 11-13 06:03 log2012.log</p>
+<p>inode 的值是：2095112 </p>
+<p>文件类型：文件类型是-，表示这是一个普通文件； 关于文件的类型，请参考上篇。</p>
+<p>文件权限：文件权限是rw-r–r– ，表示文件属主可读、可写、不可执行，文件所归属的用户组不可写，可读，不可执行，其它用户不可写，可读，不可执行；</p>
+<p>硬链接个数： log2012.log这个文件没有硬链接；因为数值是1，就是他本身；</p>
+<p>文件属主：也就是这个文件归哪于哪个用户 ，它归于root，也就是第一个root；</p>
+<p>文件属组：也就是说，对于这个文件，它归属于哪个用户组，在这里是root用户组；</p>
+<p>文件大小：文件大小是296k个字节；</p>
+<p>访问可修改时间 ：这里的时间是最后访问的时间，最后访问和文件被修改或创建的时间，有时并不是一致的；</p>
+<p>当然文档的属性不仅仅包括这些，这些是我们最常用的一些属性。</p>
+<p>关于inode：</p>
+<p>inode 译成中文就是索引节点。每个存储设备或存储设备的分区（存储设备是硬盘、软盘、U盘等等）被格式化为文件系统后，应该有两部份，一部份是inode，另一部份是Block，Block是用来存储数据用的。而inode呢，就是用来存储这些数 据的信息，这些信息包括文件大小、属主、归属的用户组、读写权限等。inode为每个文件进行信息索引，所以就有了inode的数值。操作系统根据指令， 能通过inode值最快的找到相对应的文件。</p>
+<p>做个比喻，比如一本书，存储设备或分区就相当于这本书，Block相当于书中的每一页，inode 就相当于这本书前面的目录，一本书有很多的内容，如果想查找某部份的内容，我们可以先查目录，通过目录能最快的找到我们想要看的内容。虽然不太恰当，但还是比较形象。</p>
+<p>当我们用ls 查看某个目录或文件时，如果加上-i 参数，就可以看到inode节点了；比如我们前面所说的例子：</p>
+<p>[root@localhost test]#  ls -li log2012.log </p>
+<p>2095112 -rw-r–r– 1 root root 302108 11-13 06:03 log2012.log</p>
+<p>log2012.log 的inode值是 2095112 ； 查看一个文件或目录的inode，要通过ls 命令的的 -i参数。</p>
 
       
     </div>
@@ -421,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/linux-command-06-mv.html" rel="next" title="每天一个linux命令(06)：mv">
-                <i class="fa fa-chevron-left"></i> 每天一个linux命令(06)：mv
+              <a href="/blog/linux-command-20-Linux_file_types_and_extentions.html" rel="next" title="每天一个linux命令(20)：Linux file types and extentions">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(20)：Linux file types and extentions
               </a>
             
           </div>
@@ -430,10 +405,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/linux-command-08-touch.html" rel="prev" title="每天一个linux命令(08)：touch">
-                每天一个linux命令(08)：touch <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -485,17 +456,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -555,22 +517,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cp"><span class="nav-number">1.</span> <span class="nav-text">cp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cp-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">cp</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
