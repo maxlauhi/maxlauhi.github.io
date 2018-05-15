@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="mkdir从命令看的出来是make directory的缩写，也就是设计来创建目录(win家叫文件夹)的，后跟指定创建的目录名称。要求创建目录的用户在当前目录中具有写权限，并且指定的目录名不能是当前目录中已有的目录。">
+<meta name="description" content="用SSH管理linux服务器时经常需要远程与本地之间交互文件.而直接用SecureCRT自带的上传下载功能无疑是最方便的，SecureCRT下的文件传输协议有ASCII、Xmodem、Zmodem。">
 <meta name="keywords" content="linux,终端,命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个linux命令(04)：mkdir">
-<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-04-mkdir.html">
+<meta property="og:title" content="每天一个linux命令(20)：Use SecureCRT to upload and download">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-22-secureCRT.html">
 <meta property="og:site_name" content="Maxlau">
-<meta property="og:description" content="mkdir从命令看的出来是make directory的缩写，也就是设计来创建目录(win家叫文件夹)的，后跟指定创建的目录名称。要求创建目录的用户在当前目录中具有写权限，并且指定的目录名不能是当前目录中已有的目录。">
+<meta property="og:description" content="用SSH管理linux服务器时经常需要远程与本地之间交互文件.而直接用SecureCRT自带的上传下载功能无疑是最方便的，SecureCRT下的文件传输协议有ASCII、Xmodem、Zmodem。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T14:05:50.000Z">
+<meta property="og:updated_time" content="2018-05-15T15:10:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个linux命令(04)：mkdir">
-<meta name="twitter:description" content="mkdir从命令看的出来是make directory的缩写，也就是设计来创建目录(win家叫文件夹)的，后跟指定创建的目录名称。要求创建目录的用户在当前目录中具有写权限，并且指定的目录名不能是当前目录中已有的目录。">
+<meta name="twitter:title" content="每天一个linux命令(20)：Use SecureCRT to upload and download">
+<meta name="twitter:description" content="用SSH管理linux服务器时经常需要远程与本地之间交互文件.而直接用SecureCRT自带的上传下载功能无疑是最方便的，SecureCRT下的文件传输协议有ASCII、Xmodem、Zmodem。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-04-mkdir.html"/>
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-22-secureCRT.html"/>
 
 
 
 
 
-  <title>每天一个linux命令(04)：mkdir | Maxlau</title>
+  <title>每天一个linux命令(20)：Use SecureCRT to upload and download | Maxlau</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-04-mkdir.html">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-22-secureCRT.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maxlau">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">每天一个linux命令(04)：mkdir</h1>
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(20)：Use SecureCRT to upload and download</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T21:43:23+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-15T22:53:27+08:00">
+                2018-05-15
               </time>
             
 
@@ -332,32 +332,39 @@
       
 
       
-        <p> mkdir从命令看的出来是make directory的缩写，也就是设计来创建目录(win家叫文件夹)的，后跟指定创建的目录名称。要求创建目录的用户在当前目录中具有写权限，并且指定的目录名不能是当前目录中已有的目录。<a id="more"></a></p>
-<h1 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h1><h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-m</td>
-<td style="text-align:left">–-mode模式， 创建目录时可以同时设定权限的&lt;模式&gt; (类似 chmod)</td>
-</tr>
-<tr>
-<td>-p</td>
-<td style="text-align:left">–parents  可以是一个路径名称。此时若路径中的某些目录尚不存在,加上此选项后,系统将自动建立好那些尚不存在的目录,即一次可以建立多个目录</td>
-</tr>
-<tr>
-<td>-v</td>
-<td style="text-align:left">–verbose  每次创建新目录都显示信息</td>
-</tr>
-</tbody>
-</table>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="mkdir-1"><a href="#mkdir-1" class="headerlink" title="mkdir"></a>mkdir</h3><p>-p 递归创建多个目录</p>
-<p>-m 创建权限为777的目录 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Leo$ mkdir test1/test1_1</span><br><span class="line">mkdir: test1: No such file or directory</span><br><span class="line">Leo$ mkdir -p test1/test1_1</span><br><span class="line">Leo$ cd test1/test1_1</span><br><span class="line">Leo$ pwd</span><br><span class="line">/Users/liujieping/study/test1/test1_1</span><br><span class="line"></span><br><span class="line">Leo$ mkdir -m 777 test1_1_1</span><br><span class="line">Leo$ ls -l</span><br><span class="line">total 0</span><br><span class="line">drwxrwxrwx  2 liujieping  staff  68  4 10 22:04 test1_1_1</span><br></pre></td></tr></table></figure>
+        <p>用SSH管理linux服务器时经常需要远程与本地之间交互文件.而直接用SecureCRT自带的上传下载功能无疑是最方便的，SecureCRT下的文件传输协议有ASCII、Xmodem、Zmodem。<a id="more"></a></p>
+<p>###文件传输协议：     </p>
+<p>文件传输是数据交换的主要形式。在进行文件传输时，为使文件能被正确识别和传送，我们需要在两台计算机之间建立统一的传输协议。这个协议包括了文件的识别、传送的起止时间、错误的判断与纠正等内容。常见的传输协议有以下几种：      </p>
+<p>ASCII：这是最快的传输协议，但只能传送文本文件。      </p>
+<p>Xmodem：这种古老的传输协议速度较慢，但由于使用了CRC错误侦测方法，传输的准确率可高达99.6%。 </p>
+<p> Ymodem：这是Xmodem的改良版，使用了1024位区段传送，速度比Xmodem要快     </p>
+<p>Zmodem：Zmodem采用了串流式（streaming）传输方式，传输速度较快，而且还具有自动改变区段大小和断点续传、快速错误侦测等功能。这是目前最流行的文件传输协议。  除以上几种外，还有Imodem、Jmodem、Bimodem、Kermit、Lynx等协议，由于没有多数厂商支持，这里就略去不讲。</p>
+<p><strong>SecureCRT可以使用linux下的zmodem协议来快速的传送文件,使用非常方便.</strong></p>
+<p>###具体步骤：</p>
+<p>####一．在使用SecureCRT上传下载之前需要给服务器安装lrzsz：</p>
+<p>1、从下面的地址下载 lrzsz-0.12.20.tar.gz</p>
+<p><a href="http://down1.chinaunix.net/distfiles/lrzsz-0.12.20.tar.gz" target="_blank" rel="noopener">http://down1.chinaunix.net/distfiles/lrzsz-0.12.20.tar.gz</a></p>
+<p>2、查看里面的INSTALL文档了解安装参数说明和细节</p>
+<p>3、解压文件</p>
+<p>tar zxvf lrzsz-0.12.20.tar.gz</p>
+<p>4、进入目录</p>
+<p>cd lrzsz-0.12.20</p>
+<p>5、./configure –prefix=/usr/local/lrzsz</p>
+<p>6、make</p>
+<p>7、make install</p>
+<p>8、建立软链接</p>
+<p>​    #cd /usr/bin</p>
+<p>​    #ln -s /usr/local/lrzsz/bin/lrz rz</p>
+<p>​    #ln -s /usr/local/lrzsz/bin/lsz sz</p>
+<p>9、测试</p>
+<p>运行 rz 弹出SecureCRT上传窗口,用SecureCRT来上传和下载文件。</p>
+<p>####二．设置SecureCRT上传和下载的默认目录就行</p>
+<p>options-&gt;session options -&gt;Terminal-&gt;Xmodem/Zmodem 下<br>在右栏directory设置上传和下载的目录</p>
+<p>####三．使用Zmodem从客户端上传文件到linux服务器</p>
+<p>1.在用SecureCRT登陆linux终端.<br>2.选中你要放置上传文件的路径，在目录下然后输入rz命令,SecureCRT会弹出文件选择对话框，在查找范围中找到你要上传的文件，按Add按钮。然后OK就可以把文件上传到linux上了。<br>    或者在Transfer-&gt;Zmodem Upoad list弹出文件选择对话框，选好文件后按Add按钮。然后OK窗口自动关闭。然后在linux下选中存放文件的目录，输入rz命令。liunx就把那个文件上传到这个目录下了。</p>
+<p>####四．使用Zmodem下载文件到客户端：</p>
+<p>​        sz filename<br>        zmodem接收可以自行启动.下载的文件存放在你设定的默认下载目录下.</p>
+<p>​    rz，sz是Linux/Unix同Windows进行ZModem文件传输的命令行工具windows端需要支持ZModem的telnet/ssh客户端，SecureCRT就可以用SecureCRT登陆到Unix/Linux主机（telnet或ssh均可）O 运行命令rz，即是接收文件，SecureCRT就会弹出文件选择对话框，选好文件之后关闭对话框，文件就会上传到当前目录 O 运行命令sz file1 file2就是发文件到windows上（保存的目录是可以配置） 比ftp命令方便多了，而且服务器不用再开FTP服务了</p>
 
       
     </div>
@@ -392,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/Connect github with ssh and http on a Mac via.html" rel="next" title="Mac上使用polipo代理http连接github">
-                <i class="fa fa-chevron-left"></i> Mac上使用polipo代理http连接github
+              <a href="/blog/linux-command-21-Linux_file_attribute.html" rel="next" title="每天一个linux命令(20)：Linux file attribute">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(20)：Linux file attribute
               </a>
             
           </div>
@@ -401,10 +408,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/linux-command-05-rm.html" rel="prev" title="每天一个linux命令(05)：rm">
-                每天一个linux命令(05)：rm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,17 +459,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -526,22 +520,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir"><span class="nav-number">1.</span> <span class="nav-text">mkdir</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">mkdir</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
