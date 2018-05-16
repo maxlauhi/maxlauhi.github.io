@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,终端,命令," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="通过SSH访问服务器，难免会要用到压缩，解压缩，打包，解包等，这时候tar命令就是是必不可少的一个功能强大的工具。linux中最流行的tar是麻雀虽小，五脏俱全，功能强大。 tar命令可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用t">
+<meta name="keywords" content="linux,终端,命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令(23)：tar">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-23-tar.html">
+<meta property="og:site_name" content="Maxlau">
+<meta property="og:description" content="通过SSH访问服务器，难免会要用到压缩，解压缩，打包，解包等，这时候tar命令就是是必不可少的一个功能强大的工具。linux中最流行的tar是麻雀虽小，五脏俱全，功能强大。 tar命令可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用t">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-16T15:36:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令(23)：tar">
+<meta name="twitter:description" content="通过SSH访问服务器，难免会要用到压缩，解压缩，打包，解包等，这时候tar命令就是是必不可少的一个功能强大的工具。linux中最流行的tar是麻雀虽小，五脏俱全，功能强大。 tar命令可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用t">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-23-tar.html"/>
+
+
+
+
+
+  <title>每天一个linux命令(23)：tar | Maxlau</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Maxlau</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-23-tar.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maxlau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxlau">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(23)：tar</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T23:53:27+08:00">
+                2018-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通过SSH访问服务器，难免会要用到压缩，解压缩，打包，解包等，这时候tar命令就是是必不可少的一个功能强大的工具。linux中最流行的tar是麻雀虽小，五脏俱全，功能强大。</p>
+<p>tar命令可以为linux的文件和目录创建档案。利用tar，可以为某一特定文件创建档案（备份文件），也可以在档案中改变文件，或者向档案中加入新的文件。tar最初被用来在磁带上创建档案，现在，用户可以在任何设备上创建档案。利用tar命令，可以把一大堆的文件和目录全部打包成一个文件，这对于备份文件或将几个文件组合成为一个文件以便于网络传输是非常有用的。</p>
+<p>首先要弄清两个概念：打包和压缩。打包是指将一大堆文件或目录变成一个总的文件；压缩则是将一个大的文件通过一些压缩算法变成一个小文件。</p>
+<p>为什么要区分这两个概念呢？这源于Linux中很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你得先将这一大堆文件先打成一个包（tar命令），然后再用压缩程序进行压缩（gzip bzip2命令）。</p>
+<p>linux下最常用的打包程序就是tar了，使用tar程序打出来的包我们常称为tar包，tar包文件的命令通常都是以.tar结尾的。生成tar包后，就可以用其它的程序来进行压缩。<a id="more"></a></p>
+<p>###必要参数有如下：     </p>
+<p>-A 新增压缩文件到已存在的压缩</p>
+<p>-B 设置区块大小</p>
+<p>-c 建立新的压缩文件</p>
+<p>-d 记录文件的差别</p>
+<p>-r 添加文件到已经压缩的文件</p>
+<p>-u 添加改变了和现有的文件到已经存在的压缩文件</p>
+<p>-x 从压缩的文件中提取文件</p>
+<p>-t 显示压缩文件的内容</p>
+<p>-z 支持gzip解压文件</p>
+<p>-j 支持bzip2解压文件</p>
+<p>-Z 支持compress解压文件</p>
+<p>-v 显示操作过程</p>
+<p>-l 文件系统边界设置</p>
+<p>-k 保留原有文件不覆盖</p>
+<p>-m 保留文件不被覆盖</p>
+<p>-W 确认压缩文件的正确性</p>
+<p>可选参数如下：</p>
+<p>-b 设置区块数目</p>
+<p>-C 切换到指定目录</p>
+<p>-f 指定压缩文件</p>
+<p>–help 显示帮助信息</p>
+<p>–version 显示版本信息</p>
+<p><strong>具有用来压缩和解压文件的功能。tar本身不具有压缩功能。他是调用压缩功能实现的.</strong></p>
+<p>###常见解压/压缩命令：</p>
+<p>####一．tar：</p>
+<p>解包：tar xvf FileName.tar </p>
+<p>打包：tar cvf FileName.tar DirName </p>
+<p>将文件全部打包成tar包: (注：tar是打包，不是压缩！）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ls -al log2012.log</span><br><span class="line">---xrw-r-- 1 root root 302108 11-13 06:03 log2012.log</span><br><span class="line">[root@localhost test]# tar -cvf log.tar log2012.log </span><br><span class="line">log2012.log</span><br><span class="line">[root@localhost test]# tar -zcvf log.tar.gz log2012.log</span><br><span class="line">log2012.log</span><br><span class="line">[root@localhost test]# tar -jcvf log.tar.bz2 log2012.log </span><br><span class="line">log2012.log</span><br><span class="line">[root@localhost test]# ls -al *.tar*</span><br><span class="line">-rw-r--r-- 1 root root 307200 11-29 17:54 log.tar</span><br><span class="line">-rw-r--r-- 1 root root   1413 11-29 17:55 log.tar.bz2</span><br><span class="line">-rw-r--r-- 1 root root   1413 11-29 17:54 log.tar.gz</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<p>tar -cvf log.tar log2012.log    仅打包，不压缩！ </p>
+<p>tar -zcvf log.tar.gz log2012.log   打包后，以 gzip 压缩 </p>
+<p>tar -zcvf log.tar.bz2 log2012.log  打包后，以 bzip2 压缩 </p>
+<p>在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。 如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar包； 如果加 j 参数，则以 .tar.bz2 来作为tar包名。</p>
+<p>查阅上述 tar包内有哪些文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# tar -ztvf log.tar.gz</span><br><span class="line">---xrw-r-- root/root    302108 2012-11-13 06:03:25 log2012.log</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<p>由于我们使用 gzip 压缩的log.tar.gz，所以要查阅log.tar.gz包内的文件时，就得要加上 z 这个参数了。</p>
+<p>将tar 包解压缩:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test3]# ll</span><br><span class="line">总计 0[root@localhost test3]# tar -zxvf /opt/soft/test/log.tar.gz</span><br><span class="line">log2012.log</span><br><span class="line">[root@localhost test3]# ls</span><br><span class="line">log2012.log</span><br><span class="line">[root@localhost test3]#</span><br></pre></td></tr></table></figure>
+<p>文件备份下来，并且保存其权限:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost test]# ll</span><br><span class="line">总计 0</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-13 06:06 log2015.log</span><br><span class="line">-rw-r--r-- 1 root root      0 11-16 14:41 log2016.log</span><br><span class="line">[root@localhost test]# tar -zcvpf log31.tar.gz log2014.log log2015.log log2016.log </span><br><span class="line">log2014.log</span><br><span class="line">log2015.log</span><br><span class="line">log2016.log</span><br><span class="line">[root@localhost test]# cd test6</span><br><span class="line">[root@localhost test6]# ll</span><br><span class="line">[root@localhost test6]# tar -zxvpf /opt/soft/test/log31.tar.gz </span><br><span class="line">log2014.log</span><br><span class="line">log2015.log</span><br><span class="line">log2016.log</span><br><span class="line">[root@localhost test6]# ll</span><br><span class="line">总计 0</span><br><span class="line">-rw-r--r-- 1 root root 0 11-13 06:03 log2014.log</span><br><span class="line">-rw-r--r-- 1 root root 0 11-13 06:06 log2015.log</span><br><span class="line">-rw-r--r-- 1 root root 0 11-16 14:41 log2016.log</span><br><span class="line">[root@localhost test6]#</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<p>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时</p>
+<p>在 文件夹当中，比某个日期新的文件才备份:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost soft]# tar -N &quot;2012/11/13&quot; -zcvf log17.tar.gz test</span><br><span class="line">tar: Treating date `2012/11/13&apos; as 2012-11-13 00:00:00 + 0 nanoseconds</span><br><span class="line">test/test/log31.tar.gz</span><br><span class="line">test/log2014.log</span><br><span class="line">test/linklog.log</span><br><span class="line">test/log2015.log</span><br><span class="line">test/log2013.log</span><br><span class="line">test/log2012.log</span><br><span class="line">test/log2017.log</span><br><span class="line">test/log2016.log</span><br><span class="line">test/log30.tar.gz</span><br><span class="line">test/log.tar</span><br><span class="line">test/log.tar.bz2</span><br><span class="line">test/log.tar.gz</span><br></pre></td></tr></table></figure>
+<p>####二．.gz</p>
+<p>解压1：gunzip FileName.gz<br>解压2：gzip -d FileName.gz<br>压缩：gzip FileName</p>
+<p>.tar.gz 和 .tgz<br>解压：tar zxvf FileName.tar.gz<br>压缩：tar zcvf FileName.tar.gz DirName</p>
+<p>####三．.bz2</p>
+<p>解压1：bzip2 -d FileName.bz2<br>解压2：bunzip2 FileName.bz2<br>压缩： bzip2 -z FileName</p>
+<p>.tar.bz2<br>解压：tar jxvf FileName.tar.bz2<br>压缩：tar jcvf FileName.tar.bz2 DirName</p>
+<p>####四．.bz：</p>
+<p>解压1：bzip2 -d FileName.bz<br>解压2：bunzip2 FileName.bz<br>压缩：未知</p>
+<p>.tar.bz<br>解压：tar jxvf FileName.tar.bz<br>压缩：未知</p>
+<h4 id="五．-Z："><a href="#五．-Z：" class="headerlink" title="五．.Z："></a>五．.Z：</h4><p>解压：uncompress FileName.Z<br>压缩：compress FileName</p>
+<p>.tar.Z<br>解压：tar Zxvf FileName.tar.Z<br>压缩：tar Zcvf FileName.tar.Z DirName</p>
+<p>.zip<br>解压：unzip FileName.zip<br>压缩：zip FileName.zip DirName</p>
+<h4 id="六-rar"><a href="#六-rar" class="headerlink" title="六. .rar:"></a>六. .rar:</h4><p>解压：rar x FileName.rar </p>
+<p>压缩：rar a FileName.rar DirName </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/终端/" rel="tag"># 终端</a>
+          
+            <a href="/tags/命令/" rel="tag"># 命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/linux-command-22-secureCRT.html" rel="next" title="每天一个linux命令(20)：Use SecureCRT to upload and download">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(20)：Use SecureCRT to upload and download
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Maxlau</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#五．-Z："><span class="nav-number">1.</span> <span class="nav-text">五．.Z：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-rar"><span class="nav-number">2.</span> <span class="nav-text">六. .rar:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maxlau</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
