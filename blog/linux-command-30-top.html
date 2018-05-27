@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,终端,命令," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器，显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率、CPU占用率等。 top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止。比较准确的说，top命令提供了实时的对系统处理器的状态监视。它将显示系统中">
+<meta name="keywords" content="linux,终端,命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个linux命令(30)：top">
+<meta property="og:url" content="http://maxlauhi.github.io/blog/linux-command-30-top.html">
+<meta property="og:site_name" content="Maxlau">
+<meta property="og:description" content="top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器，显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率、CPU占用率等。 top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止。比较准确的说，top命令提供了实时的对系统处理器的状态监视。它将显示系统中">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-27T08:28:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个linux命令(30)：top">
+<meta name="twitter:description" content="top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器，显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率、CPU占用率等。 top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止。比较准确的说，top命令提供了实时的对系统处理器的状态监视。它将显示系统中">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxlauhi.github.io/blog/linux-command-30-top.html"/>
+
+
+
+
+
+  <title>每天一个linux命令(30)：top | Maxlau</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Maxlau</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxlauhi.github.io/blog/linux-command-30-top.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maxlau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxlau">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每天一个linux命令(30)：top</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T16:23:24+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux系统/" itemprop="url" rel="index">
+                    <span itemprop="name">linux系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器，显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率、CPU占用率等。</p>
+<p>top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止。比较准确的说，top命令提供了实时的对系统处理器的状态监视。它将显示系统中CPU最“敏感”的任务列表。该命令可以按CPU使用，内存使用和执行时间对任务进行排序；而且该命令的很多特性都可以通过交互式命令或者在个人定制文件中进行设定。 <a id="more"></a></p>
+<p>####命令参数    </p>
+<p>-b 批处理</p>
+<p>-c 显示完整的治命令</p>
+<p>-I 忽略失效过程</p>
+<p>-s 保密模式</p>
+<p>-S 累积模式</p>
+<p>-i&lt;时间&gt; 设置间隔时间</p>
+<p>-u&lt;用户名&gt; 指定用户名</p>
+<p>-p&lt;进程号&gt; 指定进程</p>
+<p>-n&lt;次数&gt; 循环显示的次数</p>
+<ul>
+<li><p>显示进程信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@TG1704 log]# top</span><br><span class="line">top - 14:06:23 up 70 days, 16:44,  2 users,  load average: 1.25, 1.32, 1.35</span><br><span class="line">Tasks: 206 total,   1 running, 205 sleeping,   0 stopped,   0 zombie</span><br><span class="line">Cpu(s):  5.9%us,  3.4%sy,  0.0%ni, 90.4%id,  0.0%wa,  0.0%hi,  0.2%si,  0.0%st</span><br><span class="line">Mem:  32949016k total, 14411180k used, 18537836k free,   169884k buffers</span><br><span class="line">Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached</span><br><span class="line">  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND                                                                </span><br><span class="line">28894 root      22   0 1501m 405m  10m S 52.2  1.3   2534:16 java                                                                   </span><br><span class="line">18249 root      18   0 3201m 1.9g  11m S 35.9  6.0 569:39.41 java                                                                   </span><br><span class="line"> 2808 root      25   0 3333m 1.0g  11m S 24.3  3.1 526:51.85 java                                                                   </span><br><span class="line">25668 root      23   0 3180m 704m  11m S 14.0  2.2 360:44.53 java                                                                   </span><br><span class="line">  574 root      25   0 3168m 611m  10m S 12.6  1.9 556:59.63 java                                                                   </span><br><span class="line"> 1599 root      20   0 3237m 1.9g  11m S 12.3  6.2 262:01.14 java                                                                   </span><br><span class="line"> 1008 root      21   0 3147m 842m  10m S  0.3  2.6   4:31.08 java                                                                   </span><br><span class="line">13823 root      23   0 3031m 2.1g  10m S  0.3  6.8 176:57.34 java                                                                   </span><br><span class="line">28218 root      15   0 12760 1168  808 R  0.3  0.0   0:01.43 top                                                                    </span><br><span class="line">29062 root      20   0 1241m 227m  10m S  0.3  0.7   2:07.32 java                                                                   </span><br><span class="line">    1 root      15   0 10368  684  572 S  0.0  0.0   1:30.85 init                                                                   </span><br><span class="line">    2 root      RT  -5     0    0    0 S  0.0  0.0   0:01.01 migration/0                                                            </span><br><span class="line">    3 root      34  19     0    0    0 S  0.0  0.0   0:00.00 ksoftirqd/0                                                            </span><br><span class="line">    4 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/0                                                             </span><br><span class="line">    5 root      RT  -5     0    0    0 S  0.0  0.0   0:00.80 migration/1                                                            </span><br><span class="line">    6 root      34  19     0    0    0 S  0.0  0.0   0:00.00 ksoftirqd/1                                                            </span><br><span class="line">    7 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/1                                                             </span><br><span class="line">    8 root      RT  -5     0    0    0 S  0.0  0.0   0:20.59 migration/2                                                            </span><br><span class="line">    9 root      34  19     0    0    0 S  0.0  0.0   0:00.09 ksoftirqd/2                                                            </span><br><span class="line">   10 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/2                                                             </span><br><span class="line">   11 root      RT  -5     0    0    0 S  0.0  0.0   0:23.66 migration/3                                                            </span><br><span class="line">   12 root      34  19     0    0    0 S  0.0  0.0   0:00.03 ksoftirqd/3                                                            </span><br><span class="line">   13 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/3                                                             </span><br><span class="line">   14 root      RT  -5     0    0    0 S  0.0  0.0   0:20.29 migration/4                                                            </span><br><span class="line">   15 root      34  19     0    0    0 S  0.0  0.0   0:00.07 ksoftirqd/4                                                            </span><br><span class="line">   16 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/4                                                             </span><br><span class="line">   17 root      RT  -5     0    0    0 S  0.0  0.0   0:23.07 migration/5                                                            </span><br><span class="line">   18 root      34  19     0    0    0 S  0.0  0.0   0:00.07 ksoftirqd/5                                                            </span><br><span class="line">   19 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/5                                                             </span><br><span class="line">   20 root      RT  -5     0    0    0 S  0.0  0.0   0:17.16 migration/6                                                            </span><br><span class="line">   21 root      34  19     0    0    0 S  0.0  0.0   0:00.05 ksoftirqd/6                                                            </span><br><span class="line">   22 root      RT  -5     0    0    0 S  0.0  0.0   0:00.00 watchdog/6                                                             </span><br><span class="line">   23 root      RT  -5     0    0    0 S  0.0  0.0   0:58.28 migration/7</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<p>第一行，任务队列信息，同 uptime 命令的执行结果，具体参数说明情况如下：</p>
+<p>14:06:23 — 当前系统时间</p>
+<p>up 70 days, 16:44 — 系统已经运行了70天16小时44分钟（在这期间系统没有重启过的吆！）</p>
+<p>2 users — 当前有2个用户登录系统</p>
+<p>load average: 1.15, 1.42, 1.44 — load average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。</p>
+<p>load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑CPU的数量，结果高于5的时候就表明系统在超负荷运转了。</p>
+</li>
+</ul>
+<p>  第二行，Tasks — 任务（进程），具体信息说明如下：</p>
+<p>  系统现在共有206个进程，其中处于运行中的有1个，205个在休眠（sleep），stoped状态的有0个，zombie状态（僵尸）的有0个。</p>
+<p>  第三行，cpu状态信息，具体属性说明如下：</p>
+<p>  5.9%us — 用户空间占用CPU的百分比。</p>
+<p>  3.4% sy — 内核空间占用CPU的百分比。</p>
+<p>  0.0% ni — 改变过优先级的进程占用CPU的百分比</p>
+<p>  90.4% id — 空闲CPU百分比</p>
+<p>  0.0% wa — IO等待占用CPU的百分比</p>
+<p>  0.0% hi — 硬中断（Hardware IRQ）占用CPU的百分比</p>
+<p>  0.2% si — 软中断（Software Interrupts）占用CPU的百分比</p>
+<p>  备注：在这里CPU的使用比率和windows概念不同，需要理解linux系统用户空间和内核空间的相关知识！</p>
+<p>​    第四行,内存状态，具体信息如下：</p>
+<p>​    32949016k total — 物理内存总量（32GB）</p>
+<p>​    14411180k used — 使用中的内存总量（14GB）</p>
+<p>​    18537836k free — 空闲内存总量（18GB）</p>
+<p>​    169884k buffers — 缓存的内存量 （169M）</p>
+<p>​    第五行，swap交换分区信息，具体信息说明如下：</p>
+<p>​    32764556k total — 交换区总量（32GB）</p>
+<p>​    0k used — 使用的交换区总量（0K）</p>
+<p>​    32764556k free — 空闲交换区总量（32GB）</p>
+<p>​    3612636k cached — 缓冲的交换区总量（3.6GB）</p>
+<p>​    备注：</p>
+<p>​    第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是内核还未纳入其管控范围的数量。纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少，但不用为此担心。</p>
+<p>如果出于习惯去计算可用内存数，这里有个近似的计算公式：第四行的free + 第四行的buffers + 第五行的cached，按这个公式此台服务器的可用内存：18537836k +169884k +3612636k = 22GB左右。</p>
+<p>对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p>
+<p>​    第六行，空行。</p>
+<p>​    第七行以下：各进程（任务）的状态监控，项目列信息说明如下：</p>
+<p>​    PID — 进程id</p>
+<p>​    USER — 进程所有者</p>
+<p>​    PR — 进程优先级</p>
+<p>​    NI — nice值。负值表示高优先级，正值表示低优先级</p>
+<p>​    VIRT — 进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES</p>
+<p>​    RES — 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA</p>
+<p>​    SHR — 共享内存大小，单位kb</p>
+<p>​    S — 进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程</p>
+<p>​    %CPU — 上次更新到现在的CPU时间占用百分比</p>
+<p>​    %MEM — 进程使用的物理内存百分比</p>
+<p>​    TIME+ — 进程使用的CPU时间总计，单位1/100秒</p>
+<p>​    COMMAND — 进程名称（命令名/命令行）</p>
+<p>####使用技巧：</p>
+<ul>
+<li><p>多U多核CPU监控</p>
+<p>在top基本视图中，按键盘数字“1”，可监控每个逻辑CPU的状况；再按数字键1，就会返回到top基本视图界面。</p>
+</li>
+<li><p>高亮显示当前运行进程</p>
+<p>敲击键盘“b”（打开/关闭加亮效果），top的视图会变化，可以通过敲击“y”键关闭或打开运行态进程的加亮效果。</p>
+</li>
+<li><p>进程字段排序</p>
+<p>默认进入top时，各进程是按照CPU的占用量来排序的，在下图中进程ID为28894的java进程排在第一（cpu占用142%），进程ID为574的java进程排在第二（cpu占用16%）。敲击键盘“x”（打开/关闭排序列的加亮效果），top的视图变化。</p>
+</li>
+<li><p>通过”shift + &gt;”或”shift + &lt;”可以向右或左改变排序列</p>
+<p>按一次”shift + &gt;”，视图按照%MEM来排序</p>
+</li>
+</ul>
+<h4 id="top交互命令："><a href="#top交互命令：" class="headerlink" title="top交互命令："></a>top交互命令：</h4><p>​    在top 命令执行过程中可以使用的一些交互命令。这些命令都是单字母的，如果在命令行中使用了s 选项， 其中一些命令可能会被屏蔽。</p>
+<p>​    h 显示帮助画面，给出一些简短的命令总结说明</p>
+<p>​    k 终止一个进程。</p>
+<p>​    i 忽略闲置和僵死进程。这是一个开关式命令。</p>
+<p>​    q 退出程序</p>
+<p>​    r 重新安排一个进程的优先级别</p>
+<p>​    S 切换到累计模式</p>
+<p>​    s 改变两次刷新之间的延迟时间（单位为s），如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s</p>
+<p>​    f或者F 从当前显示中添加或者删除项目</p>
+<p>​    o或者O 改变显示项目的顺序</p>
+<p>​    l 切换显示平均负载和启动时间信息</p>
+<p>​    m 切换显示内存信息</p>
+<p>​    t 切换显示进程和CPU状态信息</p>
+<p>​    c 切换显示命令名称和完整命令行</p>
+<p>​    M 根据驻留内存大小进行排序</p>
+<p>​    P 根据CPU使用百分比大小进行排序</p>
+<p>​    T 根据时间/累计时间进行排序</p>
+<p>​    W 将当前设置写入~/.toprc文件中</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/终端/" rel="tag"># 终端</a>
+          
+            <a href="/tags/命令/" rel="tag"># 命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/linux-command-29-du.html" rel="next" title="每天一个linux命令(29)：du">
+                <i class="fa fa-chevron-left"></i> 每天一个linux命令(29)：du
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Maxlau</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#top交互命令："><span class="nav-number">1.</span> <span class="nav-text">top交互命令：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maxlau</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
